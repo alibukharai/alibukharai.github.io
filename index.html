@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Bukharai</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/profilePic.jpeg" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="assets\images\profilePic.jpeg" alt="Ali Bukharai">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="">Ali Bukharai</h1>
+
+          <p class="title">Senior Embedded Software Engineer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:engg.alibukharai@gmail.com" class="contact-link">engg.alibukharai@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+31642838590" class="contact-link">+31 6 42838590</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Shanghai, China</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/alibukharai/" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item" title="GitHub">
+            <a href="https://github.com/alibukharai" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item" title="Resume">
+            <a href="Shah-CV-Netherlands.pdf" class="social-link" target="_blank">
+              <ion-icon name="newspaper-outline"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>Home</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <!--
+        - #HOME
+      -->
+
+      <article class="home  active" data-page="home">
+
+        <header>
+          <h2 class="h2 article-title">Hello!</h2>
+        </header>
+
+        <section class="home-text">
+          <div class='div-text'>
+            <h3 class="h3">I am Ali Bukharai</h3>
+            <p>
+            A Senior Embedded Software Engineer with expertise in GPU systems and edge AI.
+            </p>
+
+            <p>
+            I'm currently working at AMD in Shanghai, developing RAS tools for MI-Series GPUs and virtualization technologies. 
+            My expertise spans embedded systems, AI frameworks, and hardware-software integration.
+            </p>
+
+            <p>
+            I have extensive experience with C/C++, Python, embedded systems, and GPU technologies.
+            Always passionate about solving complex technical challenges in hardware and software domains!
+            </p>
+          </div>
+
+          <div class='div-lottie'> 
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> 
+            <lottie-player src="https://lottie.host/1037d0db-bf54-46df-8a12-ae9b6a040ba7/aX8sUyGuPL.json" background="transparent" speed="0.5" style="width: 500px; height: 300px;" autoplay></lottie-player>
+          </div>
+        </section>
+      </article>
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            My name is Ali Bukharai. 
+            I am a Senior Embedded Software Engineer currently working at AMD in Shanghai, China, where I develop RAS (Reliability, Availability, Serviceability) tools for MI-Series GPUs.
+            My work focuses on real-time error monitoring, injection mechanisms, and virtualization support for enterprise deployments.
+          </p>
+
+          <p>
+            I have extensive experience in embedded systems, having previously worked at Espressif Systems developing IoT solutions with ESP32 microcontrollers.
+            My expertise includes C/C++, Python, embedded AI, hardware design, and system-level software development.
+          </p>
+
+          <p>
+            I'm passionate about the intersection of hardware and software, particularly in GPU technologies, edge AI, and embedded systems.
+            Feel free to reach out if you'd like to discuss technology, collaboration opportunities, or share insights!
+          </p>
+
+          <button class="res-btn" type="button" onclick="window.open('Shah-CV-Netherlands.pdf','_blank');">
+            <ion-icon name="newspaper-outline"></ion-icon>
+            <span>Resume</span>
+          </button>
+
+        </a>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">Skills</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-c.png
+                " alt="design icon" width="50">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">C/C++</h4>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-python.png
+                " alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Python</h4>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-hw.png
+                " alt="design icon" width="50">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Embedded Systems</h4>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-research.png
+                " alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">GPU Technologies</h4>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-java.png
+                " alt="design icon" width="50">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">IoT & Edge AI</h4>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg
+                " alt="design icon" width="50">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">System Design</h4>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <button class="res-btn" type="button" onclick="window.open('Shah-CV-Netherlands.pdf','_blank');">
+          <ion-icon name="newspaper-outline"></ion-icon>
+          <span>Resume</span>
+        </button>
+
+        <h2 class="h2 article-title"></h2>
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Bachelor's in Electronics Engineering</h4>
+
+              <span>2013 — 2017</span>
+
+              <p class="timeline-text">
+                University of Engineering and Technology (UET), Lahore, Pakistan.
+                Specialized in Electronics and Telecommunications Engineering with focus on embedded systems and signal processing.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Senior Embedded Software Engineer - AMD</h4>
+
+              <span>Feb 2023 — Present</span>
+
+              <p class="timeline-text">
+                Developing RAS tools for MI-Series GPUs, enabling real-time error monitoring and injection for data center deployments.
+                Extended RAS tools with SR-IOV and GIM features for multi-tenant GPU virtualization.
+                Led unification of RAS tools across GPU families and developed Python automation for CI/CD workflows.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Embedded Software Engineer - Espressif Systems</h4>
+
+              <span>Sep 2022 — Dec 2023</span>
+
+              <p class="timeline-text">
+                Built ESP32-based IoT solutions including ESP Knob with BLDC motor control and ESP-BOX AI Assistant with OpenAI integration.
+                Developed Matter-compliant button drivers and edge AI frameworks with CNN-based gesture recognition.
+                Created Python tools for AI model deployment on embedded devices.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Engineering Intern - Shanghai Fulllight Technology</h4>
+
+              <span>Aug 2020 — Apr 2021</span>
+
+              <p class="timeline-text">
+                Designed interior car lamp feedback system with Melexis 81118 IC using C programming.
+                Implemented real-time color temperature correction via PWM control.
+                Conducted research on circadian light effects with experimental design and data analysis.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Graduate Management Trainee - TEC Engineering Consultant</h4>
+
+              <span>Jun 2017 — Jun 2018</span>
+
+              <p class="timeline-text">
+                Set up WCDMA and LTE testing environments using Linux and Shell scripting.
+                Configured Radio Base Stations (RBS) and executed verification tests for telecom features.
+                Gained experience with Git/Gerrit, JIRA, and Agile methodologies.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>AMD Projects</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Espressif Projects</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Research</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>AMD Projects</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Espressif Projects</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Research</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="AMD Projects">
+              <a href="#" target="_blank">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-1.png" alt="RAS Tool" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">RAS Tool for MI-Series GPUs</h3>
+
+                <p class="project-category">AMD Projects</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="AMD Projects">
+              <a href="#" target="_blank">
+
+                <figure class="project-img">
+
+                  <img src="./assets/images/project-2.jpg" alt="GPU Virtualization" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">SR-IOV & GIM Virtualization</h3>
+
+                <p class="project-category">AMD Projects</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="Espressif Projects">
+              <a href="#" target="_blank">
+
+                <figure class="project-img">
+
+                  <img src="./assets/images/project-3.png" alt="ESP Knob" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">ESP Knob IoT Device</h3>
+
+                <p class="project-category">Espressif Projects</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="Espressif Projects">
+              <a href="#" target="_blank">
+
+                <figure class="project-img">
+
+                  <img src="./assets/images/project-4.jpg" alt="ESP-BOX AI" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">ESP-BOX AI Assistant</h3>
+
+                <p class="project-category">Espressif Projects</p>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+          <p>For further inquiries, feel free to contact me! </p>
+          <p>Use the info in the sidebar or use this contact form.</p>
+
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            </div>
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+            
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

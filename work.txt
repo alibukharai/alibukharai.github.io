@@ -1,0 +1,91 @@
+Senior Embedded Software Engineer
+
+AMD – Shanghai, China | Feb 2023 – Present
+
+RAS Tool Development for MI-Series GPUs (Feb 2023 – Aug 2024)
+
+Developed a user-mode Linux RAS tool for AMD MI300/MI308 GPUs, enabling real-time error monitoring and injection for data center deployments.
+
+Designed error injection and diagnostic mechanisms aligned with the ROCm stack, improving reliability testing in HPC environments.
+
+Added gTest cases and adopted TDD, ensuring high-quality and maintainable code.
+
+RAS Tool for SR-IOV & GIM Virtualization (Aug 2024 – Dec 2024)
+
+Extended the RAS tool with SR-IOV and GIM features, enabling multi-tenant GPU virtualization in enterprise clusters.
+
+Ensured compatibility with virtualized ROCm environments, improving scalability for cloud and HPC deployments.
+
+Collaborated with firmware and kernel teams to integrate virtualization support across the ROCm ecosystem.
+
+Unified RAS Tooling Across AMD Platforms (Jan 2025 – Jun 2025)
+
+Led the unification of RAS tools across GPU families (MI300X, NAVI), standardizing reliability and monitoring.
+
+Refactored the codebase for multi-architecture support, reducing maintenance overhead and improving platform consistency.
+
+Aligned diagnostics and telemetry integration across firmware, driver, and ROCm components.
+
+Python Automation & CI/CD Enablement (Ongoing)
+
+Developed a Python wrapper for the RAS C/C++ toolchain, streamlining integration with automation workflows and packaging for the Python ecosystem.
+
+Built CI/CD pipelines (Jenkins, Bash) to enable reproducible builds and faster system integration cycles.
+
+Contributed to Agile design discussions, supporting system-level requirements and feature planning for next-gen GPUs.
+
+
+
+Embedded Software Engineer
+Embedded Software Engineer
+Espressif Systems · PermanentEspressif Systems · Permanent
+Sep 2022 - Dec 2023 · 1 yr 4 mosSep 2022 to Dec 2023 · 1 yr 4 mos
+Shanghai, China · On-siteShanghai, China · On-site
+ helped me get this job
+LinkedIn helped me get this job
+ESP Knob for IoT Control (Aug 2023 – Dec 2023)
+1. Built an ESP32-based knob using a BLDC motor, functioning as a switch for Matter-compatible IoT devices with haptic feedback.
+2. Supported sensor-based and sensorless operation, integrating FOC library for precise motor control.
+3. Developed drivers for MT6701 I2C sensor and BLDC motor, with Arduino-compatible wrappers for easy customer adoption.
+4. Designed LVGL-based GUI for real-time monitoring and control.
+
+ESP-BOX AI Assistant (May 2023 – July 2023)
+1. Integrated ESP-BOX with OpenAI APIs, developing a C library and LVGL-based GUI chatbot for edge AI on constrained devices and reduced the latency issues.
+2. Enabled TinyUF2 bootloader support for secure and simplified firmware deployment across ESP32 variants.
+
+Matter Button Driver (Jan 2023 – Apr 2023)
+1. Developed Matter-compliant button driver in C for ESP32, enabling a single button to perform multiple tasks without breaking existing APIs.
+2. Created Arduino wrapper for button driver to allow customers to easily build Matter-compliant devices.
+3. Provided end-to-end support for Matter certification, including software alignment, Espressif licensing, and UL lab testing for customers.
+
+ESP Edge AI Framework & Customer Solutions (Sep 2022 – Jan 2023, Probation Period)
+1. Delivered customer-facing Edge AI solutions on ESP32-S3, strengthening adoption in real-world applications.
+2. Deployed CNN-based hand gesture recognition with ESP-DL, achieving ~0.7s on-device inference without cloud dependency.
+3. Built human activity recognition model using accelerometer data + ESP-DL, demonstrating sensor-based edge AI.
+4. Developed Python Tkinter GUI for training & deploying Key word spoting custom AI models, simplifying customer onboarding and reducing AI deployment complexity on embedded device.
+
+
+
+Engineering Intern
+Engineering Intern
+Shanghai Fulllight Technology Co.,Ltd. · InternshipShanghai Fulllight Technology Co.,Ltd. · Internship
+Aug 2020 - Apr 2021 · 9 mosAug 2020 to Apr 2021 · 9 mos
+Shanghai, China · On-siteShanghai, China · On-site
+Project: Interior Car Lamp Feedback System
+1. Designed feedback loop with Melexis 81118 IC (C) to adjust voltage via PWM, achieving real-time color temperature correction.
+2. Researched circadian light effects; performed experimental design and data analysis (Python, SPSS).
+
+
+
+Graduate Management Trainee
+Graduate Management Trainee
+TEC Engineering Consultant Pakistan · ContractTEC Engineering Consultant Pakistan · Contract
+Jun 2017 - Jun 2018 · 1 yr 1 moJun 2017 to Jun 2018 · 1 yr 1 mo
+Lahore, Pakistan · HybridLahore, Pakistan · Hybrid
+1. Set up WCDMA and LTE testing environments using Linux and Shell. 
+2. Configured RBS (Radio Base Stations) for both WCDMA and LTE nodes. 
+3. Pre-studied newly introduced telecom features and executed verification tests for their validation.
+4. Conducted workshops and technical presentations for internal and client-facing teams.
+5. Collaborated with Customer Unit engineers to ensure feature alignment with network infrastructure requirements.
+6. Gained hands-on experience with version control (Git/Gerrit), issue tracking (JIRA), and Agile methodologies.1. Set up WCDMA and LTE testing environments using Linux and Shell. 2. Configured RBS (Radio Base Stations) for both WCDMA and LTE nodes. 3. Pre-studied newly introduced telecom features and executed verification tests for their validation. 4. Conducted workshops and technical presentations for internal and client-facing teams. 5. Collaborated with Customer Unit engineers to ensure feature alignment with network infrastructure requirements. 6. Gained hands-on experience with version control (Git/Gerrit), issue tracking (JIRA), and Agile methodologies.
+Python (Programming Language) and Embedded Software
