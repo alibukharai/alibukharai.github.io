@@ -93,6 +93,71 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// Enhanced form submission with Formspree
+if (form) {
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    // Construct form endpoint (basic obfuscation)
+    const baseUrl = "https://formspree.io/f/";
+    const formId = "mr" + "bl" + "wl" + "rp"; // Your form ID split
+    const endpoint = baseUrl + formId;
+    
+    const formData = new FormData(form);
+    const button = formBtn;
+    const originalText = button.querySelector('span').textContent;
+    
+    // Update button state
+    button.querySelector('span').textContent = 'Sending...';
+    button.setAttribute('disabled', '');
+    
+    fetch(endpoint, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        button.querySelector('span').textContent = 'Message Sent!';
+        form.reset();
+        setTimeout(() => {
+          button.querySelector('span').textContent = originalText;
+          button.removeAttribute('disabled');
+        }, 3000);
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .catch(error => {
+      button.querySelector('span').textContent = 'Error! Try Again';
+      setTimeout(() => {
+        button.querySelector('span').textContent = originalText;
+        button.removeAttribute('disabled');
+      }, 3000);
+    });
+  });
+}
+
+// Form submission handling
+if (form) {
+  form.addEventListener('submit', function(e) {
+    // Show loading state
+    formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon><span>Sending...</span>';
+    formBtn.setAttribute("disabled", "");
+    
+    // Reset form after a delay (Formspree will handle the actual submission)
+    setTimeout(function() {
+      formBtn.innerHTML = '<ion-icon name="checkmark-outline"></ion-icon><span>Sent!</span>';
+      setTimeout(function() {
+        formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
+        formBtn.removeAttribute("disabled");
+      }, 2000);
+    }, 1000);
+  });
+}
+
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");

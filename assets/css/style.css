@@ -398,6 +398,7 @@ main {
 .contact-info {
   max-width: calc(100% - 46px);
   width: calc(100% - 46px);
+  min-width: 220px;
 }
 
 .contact-title {
@@ -410,6 +411,12 @@ main {
 .contact-info :is(.contact-link, time, address) {
   color: var(--white-2);
   font-size: var(--fs-7);
+  line-height: 1.6;
+}
+
+.contact-info .contact-link {
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .contact-info address { font-style: normal; }
@@ -958,14 +965,13 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 @media (min-width: 450px) {
 
-
   /**
    * #PORTFOLIO, BLOG 
    */
 
-
-
-  .project-img,
+  .project-img {
+    border-radius: 16px;
+  }
 
 }
 
@@ -1188,7 +1194,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    * REUSED STYLE
    */
 
-  .sidebar, article { width: 700px; }
+  .sidebar, article { width: 750px; }
 
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
 
@@ -1480,13 +1486,14 @@ textarea.form-input::-webkit-resizer { display: none; }
   .contacts-list { grid-template-columns: 1fr; }
 
   .contact-info :is(.contact-link) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-break: break-all;
   }
 
   .contact-info :is(.contact-link, time, address) {
-    --fs-7: 14px;
+    --fs-7: 15px;
     font-weight: var(--fw-300);
   }
 
@@ -1497,12 +1504,75 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .social-list { justify-content: center; }
 
-
-
-  /**
-	 * RESUME
-	 */
-
-  .timeline-text { max-width: 700px; }
-
 }
+
+/**
+ * CUSTOM ENHANCEMENTS
+ */
+
+/* Better email display on mobile */
+@media (max-width: 450px) {
+  .contact-info {
+    min-width: 200px;
+  }
+  
+  .contact-info .contact-link {
+    font-size: 13px;
+    word-break: break-all;
+  }
+}
+
+/* Enhanced project items */
+.project-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-img {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-img img {
+  max-width: 80px;
+  max-height: 80px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.project-item:hover .project-img img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Add gradient overlay for project images */
+.project-img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-img::before {
+  opacity: 1;
+}
+
+/**
+ * RESUME
+ */
+
+.timeline-text { max-width: 700px; }
