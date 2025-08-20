@@ -160,6 +160,12 @@ document.addEventListener('DOMContentLoaded', function() {
     lastClickedBtnArticles = articlesFirstBtn;
   }
   
+  // Initialize articles - show all by default
+  const allArticles = document.querySelectorAll('.articles [data-filter-item]');
+  allArticles.forEach(function(article) {
+    article.classList.add('active');
+  });
+  
   // Initialize page state
   setActivePage(currentPage);
 });
