@@ -107,7 +107,7 @@ if (form) {
     button.setAttribute('disabled', '');
     
     // First try Formspree
-    fetch("https://formspree.io/f/mrbznqjy", {
+    fetch("https://formspree.io/f/mrblwlrp", {
       method: 'POST',
       body: formData,
       headers: {
