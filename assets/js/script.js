@@ -21,14 +21,16 @@ const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () { elementToggleFunc(this); });
+if (select) {
+  select.addEventListener("click", function () { elementToggleFunc(this); });
+}
 
 // add event in all select items
 for (let i = 0; i < selectItems.length; i++) {
   selectItems[i].addEventListener("click", function () {
 
     let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
+    if (selectValue) selectValue.innerText = this.innerText;
     elementToggleFunc(select);
     filterFunc(selectedValue);
 
@@ -39,40 +41,88 @@ for (let i = 0; i < selectItems.length; i++) {
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
-
-  for (let i = 0; i < filterItems.length; i++) {
-    console.log(selectedValue);
-    console.log(filterItems[i].dataset.category);
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category.toLowerCase()) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
-
+  // Get current active page to determine context
+  const currentPage = document.querySelector("article.active");
+  let contextItems = filterItems;
+  
+  // If we're on articles page, filter only article items
+  if (currentPage && currentPage.classList.contains("articles")) {
+    contextItems = currentPage.querySelectorAll("[data-filter-item]");
+  }
+  // If we're on portfolio page, filter only project items  
+  else if (currentPage && currentPage.classList.contains("portfolio")) {
+    contextItems = currentPage.querySelectorAll("[data-filter-item]");
   }
 
+  for (let i = 0; i < contextItems.length; i++) {
+    console.log(selectedValue);
+    console.log(contextItems[i].dataset.category);
+    if (selectedValue === "all") {
+      contextItems[i].classList.add("active");
+    } else if (selectedValue === contextItems[i].dataset.category.toLowerCase()) {
+      contextItems[i].classList.add("active");
+    } else {
+      contextItems[i].classList.remove("active");
+    }
+  }
 }
 
 // add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
+let lastClickedBtnPortfolio = null;
+let lastClickedBtnArticles = null;
 
 for (let i = 0; i < filterBtn.length; i++) {
-
   filterBtn[i].addEventListener("click", function () {
-
     let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
+    if (selectValue) selectValue.innerText = this.innerText;
     filterFunc(selectedValue);
 
-    lastClickedBtn.classList.remove("active");
+    // Get current page context to manage active states properly
+    const currentPage = document.querySelector("article.active");
+    let lastClickedBtn = null;
+    let currentPageButtons = [];
+    
+    if (currentPage && currentPage.classList.contains("articles")) {
+      currentPageButtons = currentPage.querySelectorAll("[data-filter-btn]");
+      lastClickedBtn = lastClickedBtnArticles;
+    } else if (currentPage && currentPage.classList.contains("portfolio")) {
+      currentPageButtons = currentPage.querySelectorAll("[data-filter-btn]");
+      lastClickedBtn = lastClickedBtnPortfolio;
+    }
+
+    // Remove active from previous button in this context
+    if (lastClickedBtn) {
+      lastClickedBtn.classList.remove("active");
+    }
+    
+    // Add active to current button
     this.classList.add("active");
-    lastClickedBtn = this;
+    
+    // Update the last clicked button for this context
+    if (currentPage && currentPage.classList.contains("articles")) {
+      lastClickedBtnArticles = this;
+    } else if (currentPage && currentPage.classList.contains("portfolio")) {
+      lastClickedBtnPortfolio = this;
+    }
 
   });
 
 }
+
+// Initialize default filter states
+document.addEventListener('DOMContentLoaded', function() {
+  // Set initial active buttons for portfolio
+  const portfolioFirstBtn = document.querySelector('.portfolio [data-filter-btn]');
+  if (portfolioFirstBtn) {
+    lastClickedBtnPortfolio = portfolioFirstBtn;
+  }
+  
+  // Set initial active buttons for articles  
+  const articlesFirstBtn = document.querySelector('.articles [data-filter-btn]');
+  if (articlesFirstBtn) {
+    lastClickedBtnArticles = articlesFirstBtn;
+  }
+});
 
 // contact form variables
 const form = document.querySelector("[data-form]");
