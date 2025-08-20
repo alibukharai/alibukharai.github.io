@@ -78,10 +78,35 @@ const articlesFilterFunc = function (selectedValue) {
   for (let i = 0; i < articleItems.length; i++) {
     if (selectedValue === "all") {
       articleItems[i].classList.add("active");
-    } else if (selectedValue === articleItems[i].dataset.category.toLowerCase()) {
-      articleItems[i].classList.add("active");
     } else {
-      articleItems[i].classList.remove("active");
+      // Improved matching logic for articles
+      const itemCategory = articleItems[i].dataset.category;
+      let shouldShow = false;
+      
+      if (itemCategory) {
+        const categoryLower = itemCategory.toLowerCase();
+        
+        // Exact match
+        if (selectedValue === categoryLower) {
+          shouldShow = true;
+        }
+        // Handle specific mappings
+        else if (selectedValue === "edge ai" && categoryLower === "edge ai") {
+          shouldShow = true;
+        }
+        else if (selectedValue === "linux kernel" && categoryLower === "linux kernel") {
+          shouldShow = true;
+        }
+        else if (selectedValue === "gpu programming" && categoryLower === "gpu programming") {
+          shouldShow = true;
+        }
+      }
+      
+      if (shouldShow) {
+        articleItems[i].classList.add("active");
+      } else {
+        articleItems[i].classList.remove("active");
+      }
     }
   }
 }
@@ -121,7 +146,7 @@ for (let i = 0; i < articlesFilterBtn.length; i++) {
   });
 }
 
-// Initialize default filter states
+// Initialize default filter states and page navigation
 document.addEventListener('DOMContentLoaded', function() {
   // Set initial active buttons for portfolio
   const portfolioFirstBtn = document.querySelector('.portfolio [data-filter-btn]');
@@ -134,6 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (articlesFirstBtn) {
     lastClickedBtnArticles = articlesFirstBtn;
   }
+  
+  // Initialize page state
+  setActivePage(currentPage);
 });
 
 // contact form variables
@@ -183,21 +211,35 @@ if (form) {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
+// Store current page in sessionStorage
+let currentPage = sessionStorage.getItem('currentPage') || 'about';
+
+// Function to set active page
+function setActivePage(pageName) {
+  for (let i = 0; i < pages.length; i++) {
+    if (pageName === pages[i].dataset.page) {
+      pages[i].classList.add("active");
+      navigationLinks[i].classList.add("active");
+      currentPage = pageName;
+      sessionStorage.setItem('currentPage', pageName);
+    } else {
+      pages[i].classList.remove("active");
+      navigationLinks[i].classList.remove("active");
+    }
+  }
+}
+
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
-
+    const pageName = this.innerHTML.toLowerCase();
+    setActivePage(pageName);
+    window.scrollTo(0, 0);
   });
 }
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function() {
+  const savedPage = sessionStorage.getItem('currentPage') || 'about';
+  setActivePage(savedPage);
+});
