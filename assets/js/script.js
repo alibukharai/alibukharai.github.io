@@ -93,13 +93,10 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
-// Enhanced form submission with Formspree
+// Enhanced form submission with multiple fallback options
 if (form) {
   form.addEventListener("submit", function(e) {
     e.preventDefault();
-    
-    // Construct form endpoint
-    const endpoint = "https://formspree.io/f/xdkobpqr";
     
     const formData = new FormData(form);
     const button = formBtn;
@@ -109,7 +106,8 @@ if (form) {
     button.querySelector('span').textContent = 'Sending...';
     button.setAttribute('disabled', '');
     
-    fetch(endpoint, {
+    // First try Formspree
+    fetch("https://formspree.io/f/mrbznqjy", {
       method: 'POST',
       body: formData,
       headers: {
@@ -118,18 +116,34 @@ if (form) {
     })
     .then(response => {
       if (response.ok) {
-        button.querySelector('span').textContent = 'Message Sent!';
-        form.reset();
-        setTimeout(() => {
-          button.querySelector('span').textContent = originalText;
-          button.removeAttribute('disabled');
-        }, 3000);
+        return response.json();
       } else {
-        throw new Error('Network response was not ok');
+        throw new Error('Formspree failed, trying mailto fallback');
       }
     })
+    .then(data => {
+      button.querySelector('span').textContent = 'Message Sent!';
+      form.reset();
+      setTimeout(() => {
+        button.querySelector('span').textContent = originalText;
+        button.removeAttribute('disabled');
+      }, 3000);
+    })
     .catch(error => {
-      button.querySelector('span').textContent = 'Error! Try Again';
+      console.log('Formspree failed, using mailto fallback');
+      
+      // Fallback to mailto
+      const name = formData.get('fullname');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      const subject = encodeURIComponent(`Contact from ${name}`);
+      const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      const mailtoLink = `mailto:engg.alibukharai@gmail.com?subject=${subject}&body=${body}`;
+      
+      window.open(mailtoLink, '_blank');
+      
+      button.querySelector('span').textContent = 'Opening Email Client...';
       setTimeout(() => {
         button.querySelector('span').textContent = originalText;
         button.removeAttribute('disabled');
