@@ -18,12 +18,12 @@ sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); }
 // custom select variables
 const portfolioSelect = document.querySelector(".portfolio [data-select]");
 const portfolioSelectItems = document.querySelectorAll(".portfolio [data-select-item]");
-const portfolioSelectValue = document.querySelector(".portfolio [data-selecct-value]");
+const portfolioSelectValue = document.querySelector(".portfolio [data-select-value]");
 const portfolioFilterBtn = document.querySelectorAll(".portfolio [data-filter-btn]");
 
 const articlesSelect = document.querySelector(".articles [data-select]");
 const articlesSelectItems = document.querySelectorAll(".articles [data-select-item]");
-const articlesSelectValue = document.querySelector(".articles [data-selecct-value]");
+const articlesSelectValue = document.querySelector(".articles [data-select-value]");
 const articlesFilterBtn = document.querySelectorAll(".articles [data-filter-btn]");
 
 // Portfolio select functionality
