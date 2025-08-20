@@ -16,97 +16,109 @@ sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); }
 
 
 // custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
+const portfolioSelect = document.querySelector(".portfolio [data-select]");
+const portfolioSelectItems = document.querySelectorAll(".portfolio [data-select-item]");
+const portfolioSelectValue = document.querySelector(".portfolio [data-selecct-value]");
+const portfolioFilterBtn = document.querySelectorAll(".portfolio [data-filter-btn]");
 
-if (select) {
-  select.addEventListener("click", function () { elementToggleFunc(this); });
+const articlesSelect = document.querySelector(".articles [data-select]");
+const articlesSelectItems = document.querySelectorAll(".articles [data-select-item]");
+const articlesSelectValue = document.querySelector(".articles [data-selecct-value]");
+const articlesFilterBtn = document.querySelectorAll(".articles [data-filter-btn]");
+
+// Portfolio select functionality
+if (portfolioSelect) {
+  portfolioSelect.addEventListener("click", function () { elementToggleFunc(this); });
 }
 
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
+// Portfolio select items
+for (let i = 0; i < portfolioSelectItems.length; i++) {
+  portfolioSelectItems[i].addEventListener("click", function () {
     let selectedValue = this.innerText.toLowerCase();
-    if (selectValue) selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-
+    if (portfolioSelectValue) portfolioSelectValue.innerText = this.innerText;
+    elementToggleFunc(portfolioSelect);
+    portfolioFilterFunc(selectedValue);
   });
 }
 
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
+// Articles select functionality
+if (articlesSelect) {
+  articlesSelect.addEventListener("click", function () { elementToggleFunc(this); });
+}
 
-const filterFunc = function (selectedValue) {
-  // Get current active page to determine context
-  const currentPage = document.querySelector("article.active");
-  let contextItems = filterItems;
+// Articles select items
+for (let i = 0; i < articlesSelectItems.length; i++) {
+  articlesSelectItems[i].addEventListener("click", function () {
+    let selectedValue = this.innerText.toLowerCase();
+    if (articlesSelectValue) articlesSelectValue.innerText = this.innerText;
+    elementToggleFunc(articlesSelect);
+    articlesFilterFunc(selectedValue);
+  });
+}
+
+// Portfolio filter function
+const portfolioFilterFunc = function (selectedValue) {
+  const portfolioItems = document.querySelectorAll(".portfolio [data-filter-item]");
   
-  // If we're on articles page, filter only article items
-  if (currentPage && currentPage.classList.contains("articles")) {
-    contextItems = currentPage.querySelectorAll("[data-filter-item]");
-  }
-  // If we're on portfolio page, filter only project items  
-  else if (currentPage && currentPage.classList.contains("portfolio")) {
-    contextItems = currentPage.querySelectorAll("[data-filter-item]");
-  }
-
-  for (let i = 0; i < contextItems.length; i++) {
-    console.log(selectedValue);
-    console.log(contextItems[i].dataset.category);
+  for (let i = 0; i < portfolioItems.length; i++) {
     if (selectedValue === "all") {
-      contextItems[i].classList.add("active");
-    } else if (selectedValue === contextItems[i].dataset.category.toLowerCase()) {
-      contextItems[i].classList.add("active");
+      portfolioItems[i].classList.add("active");
+    } else if (selectedValue === portfolioItems[i].dataset.category.toLowerCase()) {
+      portfolioItems[i].classList.add("active");
     } else {
-      contextItems[i].classList.remove("active");
+      portfolioItems[i].classList.remove("active");
     }
   }
 }
 
-// add event in all filter button items for large screen
+// Articles filter function
+const articlesFilterFunc = function (selectedValue) {
+  const articleItems = document.querySelectorAll(".articles [data-filter-item]");
+  
+  for (let i = 0; i < articleItems.length; i++) {
+    if (selectedValue === "all") {
+      articleItems[i].classList.add("active");
+    } else if (selectedValue === articleItems[i].dataset.category.toLowerCase()) {
+      articleItems[i].classList.add("active");
+    } else {
+      articleItems[i].classList.remove("active");
+    }
+  }
+}
+
+// Portfolio filter buttons
 let lastClickedBtnPortfolio = null;
+
+for (let i = 0; i < portfolioFilterBtn.length; i++) {
+  portfolioFilterBtn[i].addEventListener("click", function () {
+    let selectedValue = this.innerText.toLowerCase();
+    if (portfolioSelectValue) portfolioSelectValue.innerText = this.innerText;
+    portfolioFilterFunc(selectedValue);
+
+    if (lastClickedBtnPortfolio) {
+      lastClickedBtnPortfolio.classList.remove("active");
+    }
+    this.classList.add("active");
+    lastClickedBtnPortfolio = this;
+  });
+}
+
+// Articles filter buttons
 let lastClickedBtnArticles = null;
 
-for (let i = 0; i < filterBtn.length; i++) {
-  filterBtn[i].addEventListener("click", function () {
+for (let i = 0; i < articlesFilterBtn.length; i++) {
+  articlesFilterBtn[i].addEventListener("click", function () {
     let selectedValue = this.innerText.toLowerCase();
-    if (selectValue) selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
+    if (articlesSelectValue) articlesSelectValue.innerText = this.innerText;
+    articlesFilterFunc(selectedValue);
 
-    // Get current page context to manage active states properly
-    const currentPage = document.querySelector("article.active");
-    let lastClickedBtn = null;
-    let currentPageButtons = [];
-    
-    if (currentPage && currentPage.classList.contains("articles")) {
-      currentPageButtons = currentPage.querySelectorAll("[data-filter-btn]");
-      lastClickedBtn = lastClickedBtnArticles;
-    } else if (currentPage && currentPage.classList.contains("portfolio")) {
-      currentPageButtons = currentPage.querySelectorAll("[data-filter-btn]");
-      lastClickedBtn = lastClickedBtnPortfolio;
+    if (lastClickedBtnArticles) {
+      lastClickedBtnArticles.classList.remove("active");
     }
-
-    // Remove active from previous button in this context
-    if (lastClickedBtn) {
-      lastClickedBtn.classList.remove("active");
-    }
-    
-    // Add active to current button
     this.classList.add("active");
-    
-    // Update the last clicked button for this context
-    if (currentPage && currentPage.classList.contains("articles")) {
-      lastClickedBtnArticles = this;
-    } else if (currentPage && currentPage.classList.contains("portfolio")) {
-      lastClickedBtnPortfolio = this;
-    }
+    lastClickedBtnArticles = this;
 
   });
-
 }
 
 // Initialize default filter states

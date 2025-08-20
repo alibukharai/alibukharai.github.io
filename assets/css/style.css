@@ -433,6 +433,18 @@ main {
 .social-item .social-link {
   color: var(--light-gray-70);
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+
+.social-item .social-link ion-icon,
+.social-item .social-link svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 
