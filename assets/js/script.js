@@ -93,12 +93,9 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
-// Enhanced form submission with multiple fallback options
+// Enhanced form submission
 if (form) {
   form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
     const button = formBtn;
     const originalText = button.querySelector('span').textContent;
     
@@ -106,49 +103,17 @@ if (form) {
     button.querySelector('span').textContent = 'Sending...';
     button.setAttribute('disabled', '');
     
-    // First try Formspree
-    fetch("https://formspree.io/f/mrblwlrp", {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Formspree failed, trying mailto fallback');
-      }
-    })
-    .then(data => {
+    // Let the form submit naturally to Formspree
+    // Don't prevent default - let browser handle the submission
+    
+    // Reset button after a delay for user feedback
+    setTimeout(() => {
       button.querySelector('span').textContent = 'Message Sent!';
-      form.reset();
       setTimeout(() => {
         button.querySelector('span').textContent = originalText;
         button.removeAttribute('disabled');
-      }, 3000);
-    })
-    .catch(error => {
-      console.log('Formspree failed, using mailto fallback');
-      
-      // Fallback to mailto
-      const name = formData.get('fullname');
-      const email = formData.get('email');
-      const message = formData.get('message');
-      
-      const subject = encodeURIComponent(`Contact from ${name}`);
-      const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-      const mailtoLink = `mailto:engg.alibukharai@gmail.com?subject=${subject}&body=${body}`;
-      
-      window.open(mailtoLink, '_blank');
-      
-      button.querySelector('span').textContent = 'Opening Email Client...';
-      setTimeout(() => {
-        button.querySelector('span').textContent = originalText;
-        button.removeAttribute('disabled');
-      }, 3000);
-    });
+      }, 2000);
+    }, 1000);
   });
 }
 
