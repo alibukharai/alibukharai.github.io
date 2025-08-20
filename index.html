@@ -192,6 +192,10 @@
           </li>
 
           <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Articles</button>
+          </li>
+
+          <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Contact</button>
           </li>
 
@@ -573,10 +577,6 @@
               <button data-filter-btn>Espressif Projects</button>
             </li>
 
-            <li class="filter-item">
-              <button data-filter-btn>Research</button>
-            </li>
-
           </ul>
 
           <div class="filter-select-box">
@@ -603,10 +603,6 @@
 
               <li class="select-item">
                 <button data-select-item>Espressif Projects</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Research</button>
               </li>
 
             </ul>
@@ -735,25 +731,74 @@
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="Research">
-              <a href="./projects/car-lamp-system.html">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/icon-hw.png" alt="Car Lamp System" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Interior Car Lamp Feedback System</h3>
-
-                <p class="project-category">Research</p>
-
-              </a>
-            </li>
-
           </ul>
+
+        </section>
+
+      </article>
+
+
+
+      <!--
+        - #ARTICLES
+      -->
+
+      <article class="articles" data-page="articles">
+
+        <header>
+          <h2 class="h2 article-title">Articles</h2>
+        </header>
+
+        <section class="articles-content">
+          <p style="color: var(--light-gray); font-size: var(--fs-6); margin-bottom: 30px;">
+            Technical articles and insights on Linux kernel development, embedded systems, and GPU technologies.
+          </p>
+
+          <div class="articles-list">
+            
+            <div class="article-item">
+              <div class="article-content">
+                <h3 class="h3 article-title">
+                  <a href="https://medium.com/@engg.alibukharai" target="_blank" style="color: var(--white-2); text-decoration: none;">
+                    Linux Kernel Development Articles
+                  </a>
+                </h3>
+                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
+                  Published on Medium
+                </p>
+                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
+                  Deep dive into Linux kernel internals, driver development, and system-level programming. 
+                  Covering topics from kernel modules to advanced debugging techniques.
+                </p>
+                <a href="https://medium.com/@engg.alibukharai" target="_blank" class="article-link" 
+                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
+                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
+                  Read on Medium →
+                </a>
+              </div>
+            </div>
+
+            <div class="article-item" style="margin-top: 30px;">
+              <div class="article-content">
+                <h3 class="h3 article-title" style="color: var(--light-gray-70);">
+                  More Articles Coming Soon...
+                </h3>
+                <p style="color: var(--light-gray); line-height: 1.6;">
+                  Stay tuned for upcoming articles on GPU programming, embedded AI, and IoT development.
+                  Follow my Medium profile to get notified about new publications.
+                </p>
+              </div>
+            </div>
+
+          </div>
+          
+          <div style="text-align: center; margin-top: 40px;">
+            <a href="https://medium.com/@engg.alibukharai" target="_blank" class="form-btn" 
+               style="display: inline-block; text-decoration: none;">
+              <ion-icon name="logo-medium"></ion-icon>
+              <span>Follow on Medium</span>
+            </a>
+          </div>
 
         </section>
 

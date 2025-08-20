@@ -519,6 +519,44 @@ main {
 
 .about-text p { margin-bottom: 15px; }
 
+/*-----------------------------------*\
+  #ARTICLES
+\*-----------------------------------*/
+
+.articles .article-title { margin-bottom: 15px; }
+
+.articles-content {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
+
+.article-item {
+  background: var(--border-gradient-onyx);
+  border: 1px solid var(--jet);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.article-item .article-title {
+  margin-bottom: 10px;
+}
+
+.article-meta {
+  text-transform: uppercase;
+  font-weight: var(--fw-500);
+}
+
+.article-link:hover {
+  color: var(--white-2);
+}
+
+/*-----------------------------------*\
+  #ABOUT (continued)
+\*-----------------------------------*/
+
 .about-text .social-link {
   color: var(--light-gray-70);
   font-size: 15px;
