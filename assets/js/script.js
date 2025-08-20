@@ -98,10 +98,8 @@ if (form) {
   form.addEventListener("submit", function(e) {
     e.preventDefault();
     
-    // Construct form endpoint (basic obfuscation)
-    const baseUrl = "https://formspree.io/f/";
-    const formId = "mr" + "bl" + "wl" + "rp"; // Your form ID split
-    const endpoint = baseUrl + formId;
+    // Construct form endpoint
+    const endpoint = "https://formspree.io/f/xdkobpqr";
     
     const formData = new FormData(form);
     const button = formBtn;
@@ -137,24 +135,6 @@ if (form) {
         button.removeAttribute('disabled');
       }, 3000);
     });
-  });
-}
-
-// Form submission handling
-if (form) {
-  form.addEventListener('submit', function(e) {
-    // Show loading state
-    formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon><span>Sending...</span>';
-    formBtn.setAttribute("disabled", "");
-    
-    // Reset form after a delay (Formspree will handle the actual submission)
-    setTimeout(function() {
-      formBtn.innerHTML = '<ion-icon name="checkmark-outline"></ion-icon><span>Sent!</span>';
-      setTimeout(function() {
-        formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
-        formBtn.removeAttribute("disabled");
-      }, 2000);
-    }, 1000);
   });
 }
 

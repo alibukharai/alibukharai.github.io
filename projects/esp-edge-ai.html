@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP Edge AI Framework - Ali Hassan Shah</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <div class="main-content">
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="../index.html" class="navbar-link">← Back to Portfolio</a>
+          </li>
+        </ul>
+      </nav>
+
+      <article class="about active" data-page="project">
+        <header>
+          <h2 class="h2 article-title">ESP Edge AI Framework</h2>
+        </header>
+
+        <section class="about-text">
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/images/icon-python.png" alt="Edge AI Framework" style="width: 100px; height: 100px;">
+          </div>
+
+          <h3 class="h3">Project Overview</h3>
+          <p>
+            Designed and developed a comprehensive edge AI framework for ESP32 platforms, enabling deployment of 
+            machine learning models directly on microcontrollers. This framework optimizes AI inference for 
+            resource-constrained environments while maintaining real-time performance for IoT applications.
+          </p>
+
+          <h3 class="h3">Key Features</h3>
+          <ul style="color: var(--light-gray); margin-left: 20px;">
+            <li>Optimized TensorFlow Lite integration for ESP32</li>
+            <li>Model quantization and compression tools</li>
+            <li>Real-time inference with minimal latency</li>
+            <li>Support for vision, audio, and sensor data processing</li>
+            <li>Dynamic model loading and switching</li>
+            <li>Memory-efficient execution with PSRAM utilization</li>
+            <li>Power optimization for battery-powered devices</li>
+            <li>Developer-friendly API with Python toolchain</li>
+          </ul>
+
+          <h3 class="h3">Framework Architecture</h3>
+          <p>
+            Built on a modular architecture that separates model management, inference engine, and hardware abstraction. 
+            The framework provides automatic optimization for different ESP32 variants, intelligent memory management, 
+            and seamless integration with ESP-IDF development environment.
+          </p>
+
+          <h3 class="h3">Model Optimization</h3>
+          <p>
+            Implements advanced model optimization techniques including 8-bit and 16-bit quantization, weight pruning, 
+            and layer fusion. The framework includes tools for model compression that can reduce model size by up to 75% 
+            while maintaining inference accuracy suitable for edge applications.
+          </p>
+
+          <h3 class="h3">Use Cases</h3>
+          <ul style="color: var(--light-gray); margin-left: 20px;">
+            <li>Computer vision for security cameras and quality control</li>
+            <li>Audio classification for voice commands and sound detection</li>
+            <li>Sensor data analysis for predictive maintenance</li>
+            <li>Gesture recognition for human-machine interfaces</li>
+            <li>Environmental monitoring with intelligent alerts</li>
+            <li>Industrial automation with real-time decision making</li>
+          </ul>
+
+          <h3 class="h3">Technologies Used</h3>
+          <div class="service-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div class="service-item" style="text-align: center;">
+              <div class="service-icon-box">
+                <img src="../assets/images/icon-c.png" alt="C/C++" width="40">
+              </div>
+              <h4 class="h4 service-item-title">C/C++</h4>
+            </div>
+            <div class="service-item" style="text-align: center;">
+              <div class="service-icon-box">
+                <img src="../assets/images/icon-python.png" alt="Python" width="40">
+              </div>
+              <h4 class="h4 service-item-title">Python/TensorFlow</h4>
+            </div>
+            <div class="service-item" style="text-align: center;">
+              <div class="service-icon-box">
+                <img src="../assets/images/icon-research.png" alt="AI/ML" width="40">
+              </div>
+              <h4 class="h4 service-item-title">TensorFlow Lite</h4>
+            </div>
+          </div>
+
+          <h3 class="h3">Performance Metrics</h3>
+          <p>
+            The framework achieves impressive performance metrics including sub-100ms inference times for common 
+            vision models, support for models up to 4MB in size, and power consumption as low as 50mA during 
+            inference operations. Memory usage is optimized to work within the constraints of ESP32's RAM and 
+            external PSRAM configurations.
+          </p>
+
+          <h3 class="h3">Developer Tools</h3>
+          <p>
+            Includes comprehensive Python toolchain for model conversion, optimization, and deployment. The framework 
+            provides debugging tools, performance profilers, and visualization utilities that simplify the development 
+            process for engineers new to edge AI deployment.
+          </p>
+
+          <h3 class="h3">Impact</h3>
+          <p>
+            This edge AI framework has enabled thousands of developers to deploy machine learning models on ESP32 
+            platforms, democratizing access to AI capabilities in IoT devices. The framework has been adopted by 
+            major IoT companies and is part of Espressif's official AI development ecosystem, powering innovative 
+            applications from smart agriculture to industrial automation.
+          </p>
+
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="../index.html" class="form-btn" style="display: inline-block; text-decoration: none;">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+              <span>Back to Portfolio</span>
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
