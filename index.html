@@ -10,7 +10,10 @@
   <!--
     - favicon
   -->
-  <link rel="shortcut icon" href="./assets/images/profilePic.jpeg" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/images/profilePic.jpeg" type="image/jpeg">
+  <link rel="icon" type="image/jpeg" sizes="32x32" href="./assets/images/profilePic.jpeg">
+  <link rel="icon" type="image/jpeg" sizes="16x16" href="./assets/images/profilePic.jpeg">
+  <link rel="apple-touch-icon" href="./assets/images/profilePic.jpeg">
 
   <!--
     - custom css link
@@ -42,7 +45,7 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="assets\images\profilePic.jpeg" alt="Ali Hassan Shah">
+          <img src="./assets/images/profilePic.jpeg" alt="Ali Hassan Shah">
         </figure>
 
         <div class="info-content">
@@ -220,33 +223,14 @@
       <article class="home  active" data-page="home">
 
         <header>
-          <h2 class="h2 article-title">Hello!</h2>
+          <h2 class="h2 article-title">hello</h2>
         </header>
 
         <section class="home-text">
           <div class='div-text'>
-            <h3 class="h3">I am Ali Hassan Shah</h3>
-            <p>
-            A Senior Embedded Software Engineer with deep expertise in GPU systems, edge AI, and embedded technologies.
-            </p>
-
-            <p>
-            Currently at AMD in Shanghai, I develop RAS (Reliability, Availability, Serviceability) tools for MI-Series GPUs, 
-            focusing on real-time error monitoring, virtualization support, and enterprise GPU deployments. 
-            My work spans across firmware, driver, and ROCm ecosystem integration.
-            </p>
-
-            <p>
-            With extensive experience in C/C++, Python, embedded systems, and GPU technologies, I'm passionate about 
-            solving complex challenges at the intersection of hardware and software. Previously at Espressif Systems, 
-            I built innovative IoT solutions and edge AI frameworks for ESP32 platforms.
-            </p>
-
-            <p>
-            I regularly share technical insights and tutorials on <a href="https://medium.com/@engg.alibukharai" target="_blank" 
-            style="color: var(--orange-yellow-crayola); text-decoration: none; font-weight: 500;">Medium</a>, 
-            covering topics from embedded AI to GPU programming and Linux kernel development.
-            </p>
+            <h3 class="h3" style="font-size: 2.5rem; margin-bottom: 20px; color: var(--orange-yellow-crayola);">I'm Ali Hassan Shah</h3>
+            <p>Embedded software engineer with 3 years of experience in C, C++, and Python, 
+              primarily focused on device drivers and firmware development. I am currently open to new oppurtunities where I can contribute and grow.</p>
           </div>
 
           <div class='div-lottie'> 
@@ -270,28 +254,19 @@
 
         <section class="about-text">
           <p>
-            My name is Ali Hassan Shah. 
-            I am a Senior Embedded Software Engineer currently working at AMD in Shanghai, China, where I develop 
-            RAS (Reliability, Availability, Serviceability) tools for MI-Series GPUs including MI300X and MI308 models.
-            My work focuses on real-time error monitoring, injection mechanisms, SR-IOV virtualization, and enterprise deployments.
+            My name is Ali Hassan Shah, and I have experience working in international companies such as AMD and Espressif Systems, where I contributed to both system-level and customer-facing software projects.            
           </p>
 
           <p>
-            At AMD, I've led the unification of RAS tools across GPU families, developed Python automation frameworks, 
-            and built CI/CD pipelines that enable reproducible builds and faster system integration. I collaborate closely 
-            with firmware and kernel teams to ensure seamless integration across the ROCm ecosystem.
+            At AMD (Shanghai, China), I initially joined the GPU software team as a developer but began by working as a software tester to gain deep familiarity with the kernel driver stack. This gave me valuable insight into the system architecture and led me to take the initiative to develop a unified RAS tool capable of supporting multiple ASIC generations. In addition, I’ve contributed to the development of internal debugging tools leveraging modern LLM workflows, making issue triage and system bring-up more efficient. My primary coding work involves C, C++, and Python, with a focus on reliability and scalability.
           </p>
 
           <p>
-            Previously at Espressif Systems, I developed innovative IoT solutions with ESP32 microcontrollers, including 
-            Matter-compliant devices, edge AI frameworks, and OpenAI-integrated assistants. My expertise spans C/C++, Python, 
-            embedded AI, hardware design, TDD practices, and system-level software development.
+            At Espressif Systems, I worked on customer-facing IoT projects using the ESP32 platform, delivering complete solutions with standardized software stacks in C and C++. These projects included Matter-compliant devices and edge AI use cases, where I collaborated closely with customers to ensure robust integration.
           </p>
 
           <p>
-            I'm passionate about the intersection of hardware and software, particularly in GPU technologies, edge AI, 
-            and embedded systems. Feel free to reach out if you'd like to discuss technology, collaboration opportunities, 
-            or share insights!
+            I’m passionate about embedded software design, particularly for tiny, resource-constrained devices, and enjoy bridging the gap between low-level hardware and high-level system software.
           </p>
 
           <button class="res-btn" type="button" onclick="window.open('./assets/Shah-CV-Netherlands.pdf','_blank');">
@@ -450,26 +425,26 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Master's in Electrical Engineering</h4>
+              <h4 class="h4 timeline-item-title">Master's in  Electronics Engineering</h4>
 
-              <span>2019 — 2021</span>
+              <span>2019 — 2022</span>
 
               <p class="timeline-text">
-                University of Engineering and Technology (UET), Lahore, Pakistan.
-                Specialized in Electronics and Communication Engineering with focus on embedded systems, signal processing, and advanced digital systems.
+                <strong style="color: var(--orange-yellow-crayola);">FUDAN University, Shanghai, China</strong><br>
+                Specialized in Electronics Engineering with focus on embedded systems, high speed electronics, HDL Based design and advanced digital systems.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Bachelor's in Electronics Engineering</h4>
+              <h4 class="h4 timeline-item-title">Bachelor's in Electrical Engineering</h4>
 
               <span>2013 — 2017</span>
 
               <p class="timeline-text">
-                University of Engineering and Technology (UET), Lahore, Pakistan.
-                Specialized in Electronics and Telecommunications Engineering with focus on embedded systems and signal processing.
+                <strong style="color: var(--orange-yellow-crayola);">COMSATS University of Science and Technology, Abbottabad, Pakistan</strong><br>
+                Specialized in Electronics Engineering with focus on embedded systems, electrical engineering, and digital systems.
               </p>
 
             </li>
@@ -492,67 +467,84 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Senior Embedded Software Engineer - AMD</h4>
+              <h4 class="h4 timeline-item-title">Senior Embedded Software Engineer - <a href="https://www.amd.com" target="_blank" style="color: var(--orange-yellow-crayola); text-decoration: none;">AMD</a></h4>
 
               <span>Feb 2023 — Present</span>
 
               <p class="timeline-text">
-                <strong>RAS Tool Development for MI-Series GPUs:</strong> Developed user-mode Linux RAS tools for AMD MI300/MI308 GPUs, 
-                enabling real-time error monitoring and injection for data center deployments. Designed error injection mechanisms 
-                aligned with the ROCm stack, improving reliability testing in HPC environments.
-                <br><br>
-                <strong>SR-IOV & GIM Virtualization:</strong> Extended RAS tools with SR-IOV and GIM features for multi-tenant GPU virtualization 
-                in enterprise clusters. Ensured compatibility with virtualized ROCm environments.
-                <br><br>
-                <strong>Unified RAS Tooling:</strong> Led unification of RAS tools across GPU families (MI300X, NAVI), standardizing reliability 
-                and monitoring while reducing maintenance overhead. Developed Python automation and CI/CD pipelines using Jenkins and Bash.
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">RAS Tool Development for MI-Series GPUs</strong><br>
+                • Developed user-mode Linux RAS tools for AMD MI300/MI308 GPUs enabling real-time error monitoring and injection for data center deployments<br>
+                • Designed error injection mechanisms aligned with the ROCm stack, improving reliability testing in HPC environments<br><br>
+                
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">SR-IOV & GIM Virtualization</strong><br>
+                • Extended RAS tools with SR-IOV and GIM features for multi-tenant GPU virtualization in enterprise clusters<br>
+                • Ensured compatibility with virtualized ROCm environments<br><br>
+                
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">Unified RAS Tooling</strong><br>
+                • Led unification of RAS tools across GPU families (MI300X, NAVI), standardizing reliability and monitoring while reducing maintenance overhead<br>
+                • Developed Python automation and CI/CD pipelines using Jenkins and Bash
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Embedded Software Engineer - Espressif Systems</h4>
+              <h4 class="h4 timeline-item-title">Embedded Software Engineer - <a href="https://www.espressif.com" target="_blank" style="color: var(--orange-yellow-crayola); text-decoration: none;">Espressif Systems</a></h4>
 
               <span>Sep 2022 — Dec 2023</span>
 
               <p class="timeline-text">
-                <strong>ESP Knob for IoT Control:</strong> Built ESP32-based knob using BLDC motor with haptic feedback for Matter-compatible 
-                IoT devices. Integrated FOC library for precise motor control and developed Arduino-compatible wrappers.
-                <br><br>
-                <strong>ESP-BOX AI Assistant:</strong> Integrated ESP-BOX with OpenAI APIs, developing C library and LVGL-based GUI chatbot 
-                for edge AI on constrained devices. Enabled TinyUF2 bootloader support for secure firmware deployment.
-                <br><br>
-                <strong>Matter & Edge AI Solutions:</strong> Developed Matter-compliant button drivers and edge AI frameworks with CNN-based 
-                gesture recognition achieving ~0.7s on-device inference. Created Python tools for training and deploying custom AI models.
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP Knob for IoT Control (Aug 2023 – Dec 2023)</strong><br>
+                • Built ESP32-based knob using BLDC motor with haptic feedback for Matter-compatible IoT devices<br>
+                • Integrated FOC library for precise motor control, supporting both sensor-based and sensorless operation<br>
+                • Developed drivers for MT6701 I2C sensor and BLDC motor with Arduino-compatible wrappers<br>
+                • Designed LVGL-based GUI for real-time monitoring and control<br><br>
+
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP-BOX AI Assistant (May 2023 – July 2023)</strong><br>
+                • Integrated ESP-BOX with OpenAI APIs, developing C library and LVGL-based GUI chatbot for edge AI<br>
+                • Reduced latency issues on constrained devices through optimized implementation<br>
+                • Enabled TinyUF2 bootloader support for secure and simplified firmware deployment<br><br>
+
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">Matter Button Driver (Jan 2023 – Apr 2023)</strong><br>
+                • Developed Matter-compliant button driver enabling single button to perform multiple tasks without breaking APIs<br>
+                • Created Arduino wrapper for easy customer adoption of Matter-compliant devices<br>
+                • Provided end-to-end support for Matter certification including software alignment and UL lab testing<br><br>
+
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP Edge AI Framework (Sep 2022 – Jan 2023)</strong><br>
+                • Delivered customer-facing Edge AI solutions on ESP32-S3, strengthening real-world application adoption<br>
+                • Deployed CNN-based hand gesture recognition achieving ~0.7s on-device inference without cloud dependency<br>
+                • Built human activity recognition model using accelerometer data + ESP-DL<br>
+                • Developed Python Tkinter GUI for training & deploying custom AI models, simplifying customer onboarding
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Engineering Intern - Shanghai Fulllight Technology</h4>
+              <h4 class="h4 timeline-item-title">Engineering Intern - <a href="https://fulllight.com.cn" target="_blank" style="color: var(--orange-yellow-crayola); text-decoration: none;">Shanghai Fulllight Technology</a></h4>
 
               <span>Aug 2020 — Apr 2021</span>
 
               <p class="timeline-text">
-                Designed interior car lamp feedback system with Melexis 81118 IC using C programming.
-                Implemented real-time color temperature correction via PWM control.
-                Conducted research on circadian light effects with experimental design and data analysis.
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">Interior Car Lamp Feedback System</strong><br>
+                • Designed feedback control system with Melexis 81118 IC using C programming for real-time color temperature correction<br>
+                • Implemented PWM-based voltage adjustment achieving precise automotive lighting control<br>
+                • Conducted research on circadian light effects with experimental design and data analysis using Python and SPSS<br>
+                • Developed embedded control algorithms for adaptive automotive lighting systems
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Graduate Management Trainee - TEC Engineering Consultant</h4>
+              <h4 class="h4 timeline-item-title">Graduate Management Trainee - <a href="https://www.tec.com.pk" target="_blank" style="color: var(--orange-yellow-crayola); text-decoration: none;">TEC Engineering Consultant</a></h4>
 
               <span>Jun 2017 — Jun 2018</span>
 
               <p class="timeline-text">
-                Set up WCDMA and LTE testing environments using Linux and Shell scripting.
-                Configured Radio Base Stations (RBS) and executed verification tests for telecom features.
-                Gained experience with Git/Gerrit, JIRA, and Agile methodologies.
+                • Set up WCDMA and LTE testing environments using Linux and Shell scripting<br>
+                • Configured Radio Base Stations (RBS) and executed verification tests for telecom features<br>
+                • Gained experience with Git/Gerrit, JIRA, and Agile methodologies
               </p>
 
             </li>
@@ -593,6 +585,10 @@
               <button data-filter-btn>Espressif Projects</button>
             </li>
 
+            <li class="filter-item">
+              <button data-filter-btn>Other Projects</button>
+            </li>
+
           </ul>
 
           <div class="filter-select-box">
@@ -619,6 +615,10 @@
 
               <li class="select-item">
                 <button data-select-item>Espressif Projects</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Other Projects</button>
               </li>
 
             </ul>
@@ -689,6 +689,7 @@
                 <h3 class="project-title">ESP-BOX AI Assistant</h3>
 
                 <p class="project-category">Espressif Projects</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">OpenAI API integration with optimized C library and LVGL GUI for edge AI chatbot deployment</p>
 
               </a>
             </li>
@@ -707,6 +708,7 @@
                 <h3 class="project-title">Matter Button Driver</h3>
 
                 <p class="project-category">Espressif Projects</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Matter-compliant button driver enabling multi-function operation with Arduino compatibility and certification support</p>
 
               </a>
             </li>
@@ -725,6 +727,7 @@
                 <h3 class="project-title">ESP Edge AI Framework</h3>
 
                 <p class="project-category">Espressif Projects</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Comprehensive Edge AI framework with CNN gesture recognition, Python training tools, and customer onboarding solutions</p>
 
               </a>
             </li>
@@ -743,6 +746,26 @@
                 <h3 class="project-title">Python Automation & CI/CD</h3>
 
                 <p class="project-category">AMD Projects</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Python automation frameworks and CI/CD pipelines for unified RAS tooling across GPU families with Jenkins integration</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="Other Projects">
+              <a href="./projects/car-lamp-system.html">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/icon-hw.png" alt="Interior Car Lamp System" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Interior Car Lamp Feedback System</h3>
+
+                <p class="project-category">Other Projects</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Real-time color temperature correction for automotive lighting using Melexis IC and PWM control</p>
 
               </a>
             </li>
@@ -784,9 +807,7 @@
               <button data-filter-btn>Linux Kernel</button>
             </li>
 
-            <li class="filter-item">
-              <button data-filter-btn>GPU Programming</button>
-            </li>
+
 
           </ul>
 
@@ -816,9 +837,7 @@
                 <button data-select-item>Linux Kernel</button>
               </li>
 
-              <li class="select-item">
-                <button data-select-item>GPU Programming</button>
-              </li>
+
 
             </ul>
 
@@ -826,8 +845,8 @@
 
           <ul class="articles-list">
             
-            <!-- Edge AI Articles -->
-            <li class="article-item active" data-filter-item data-category="Edge AI">
+            <!-- Edge AI Article -->
+            <li class="article-item active" data-filter-item data-category="edge ai">
               <div class="article-content">
                 <h3 class="h3 article-title">
                   <a href="./articles/embedded-ai-edge-computing.html" style="color: var(--white-2); text-decoration: none;">
@@ -849,115 +868,10 @@
               </div>
             </li>
 
-            <li class="article-item" data-filter-item data-category="Edge AI">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="#" style="color: var(--white-2); text-decoration: none;">
-                    TinyML Model Optimization for ESP32
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  May 2024 • 12 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Deep dive into optimizing machine learning models for resource-constrained embedded devices. 
-                  Covers quantization, pruning, and deployment strategies for ESP32-based AI applications.
-                </p>
-                <span class="article-link" style="color: var(--light-gray-70); font-size: var(--fs-7);">
-                  <ion-icon name="time-outline" style="margin-right: 5px;"></ion-icon>
-                  Coming Soon...
-                </span>
-              </div>
-            </li>
 
-            <li class="article-item" data-filter-item data-category="Edge AI">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="https://medium.com/@engg.alibukharai" target="_blank" style="color: var(--white-2); text-decoration: none;">
-                    Computer Vision on Edge Devices
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  March 2024 • 16 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Implementing real-time computer vision algorithms on embedded systems using OpenCV and optimized neural networks for edge AI applications.
-                </p>
-                <a href="https://medium.com/@engg.alibukharai" target="_blank" class="article-link" 
-                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
-                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
-                  Read on Medium →
-                </a>
-              </div>
-            </li>
 
-            <!-- GPU Programming Articles -->
-            <li class="article-item" data-filter-item data-category="GPU Programming">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="./articles/gpu-programming-cuda-opencl.html" style="color: var(--white-2); text-decoration: none;">
-                    GPU Programming with CUDA and OpenCL
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  February 2024 • 20 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Practical guide to GPU programming covering CUDA and OpenCL, with performance optimization 
-                  strategies and real-world examples from embedded AI projects.
-                </p>
-                <a href="./articles/gpu-programming-cuda-opencl.html" class="article-link" 
-                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
-                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
-                  Read Article →
-                </a>
-              </div>
-            </li>
-
-            <li class="article-item" data-filter-item data-category="GPU Programming">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="#" style="color: var(--white-2); text-decoration: none;">
-                    NVIDIA Jetson for Edge AI Computing
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  June 2024 • 14 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Leveraging NVIDIA Jetson platforms for high-performance edge AI applications. 
-                  Covers TensorRT optimization, memory management, and power efficiency techniques.
-                </p>
-                <span class="article-link" style="color: var(--light-gray-70); font-size: var(--fs-7);">
-                  <ion-icon name="time-outline" style="margin-right: 5px;"></ion-icon>
-                  Coming Soon...
-                </span>
-              </div>
-            </li>
-
-            <li class="article-item" data-filter-item data-category="GPU Programming">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="https://medium.com/@engg.alibukharai" target="_blank" style="color: var(--white-2); text-decoration: none;">
-                    Parallel Computing Fundamentals
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  January 2024 • 22 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Understanding parallel computing concepts, memory hierarchies, and optimization strategies for GPU-accelerated applications in scientific computing.
-                </p>
-                <a href="https://medium.com/@engg.alibukharai" target="_blank" class="article-link" 
-                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
-                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
-                  Read on Medium →
-                </a>
-              </div>
-            </li>
-
-            <!-- Linux Kernel Articles -->
-            <li class="article-item" data-filter-item data-category="Linux Kernel">
+            <!-- Linux Kernel Article -->
+            <li class="article-item active" data-filter-item data-category="linux kernel">
               <div class="article-content">
                 <h3 class="h3 article-title">
                   <a href="./articles/linux-kernel-debugging.html" style="color: var(--white-2); text-decoration: none;">
@@ -976,68 +890,6 @@
                   <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
                   Read Article →
                 </a>
-              </div>
-            </li>
-
-            <li class="article-item" data-filter-item data-category="Linux Kernel">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="#" style="color: var(--white-2); text-decoration: none;">
-                    Linux Device Driver Development
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  July 2024 • 25 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Complete guide to developing Linux device drivers from scratch. Covers character drivers, 
-                  block drivers, interrupt handling, and device tree integration.
-                </p>
-                <span class="article-link" style="color: var(--light-gray-70); font-size: var(--fs-7);">
-                  <ion-icon name="time-outline" style="margin-right: 5px;"></ion-icon>
-                  Coming Soon...
-                </span>
-              </div>
-            </li>
-
-            <li class="article-item" data-filter-item data-category="Linux Kernel">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="https://medium.com/@engg.alibukharai" target="_blank" style="color: var(--white-2); text-decoration: none;">
-                    Kernel Module Programming Essentials
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  February 2024 • 18 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Essential techniques for Linux kernel module development including module initialization, 
-                  cleanup, parameter passing, and interaction with kernel subsystems.
-                </p>
-                <a href="https://medium.com/@engg.alibukharai" target="_blank" class="article-link" 
-                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
-                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
-                  Read on Medium →
-                </a>
-              </div>
-            </li>
-
-            <li class="article-item" data-filter-item data-category="Linux Kernel">
-              <div class="article-content">
-                <h3 class="h3 article-title" style="color: var(--light-gray-70);">
-                  System Call Implementation Guide
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  In Development
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Deep dive into implementing custom system calls in Linux kernel, covering syscall table, 
-                  parameter validation, and userspace interaction patterns.
-                </p>
-                <span class="article-link" style="color: var(--light-gray-70); font-size: var(--fs-7);">
-                  <ion-icon name="time-outline" style="margin-right: 5px;"></ion-icon>
-                  Coming Soon...
-                </span>
               </div>
             </li>
 

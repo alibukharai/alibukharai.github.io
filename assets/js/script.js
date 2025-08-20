@@ -74,38 +74,33 @@ const portfolioFilterFunc = function (selectedValue) {
 // Articles filter function
 const articlesFilterFunc = function (selectedValue) {
   const articleItems = document.querySelectorAll(".articles [data-filter-item]");
+  console.log("Filtering articles for:", selectedValue);
+  console.log("Found article items:", articleItems.length);
   
   for (let i = 0; i < articleItems.length; i++) {
     if (selectedValue === "all") {
       articleItems[i].classList.add("active");
+      console.log("Showing all - item", i);
     } else {
-      // Improved matching logic for articles
       const itemCategory = articleItems[i].dataset.category;
-      let shouldShow = false;
+      console.log("Item", i, "category:", itemCategory, "selected:", selectedValue);
       
       if (itemCategory) {
         const categoryLower = itemCategory.toLowerCase();
+        const selectedLower = selectedValue.toLowerCase();
         
-        // Exact match
-        if (selectedValue === categoryLower) {
-          shouldShow = true;
+        console.log("Comparing:", selectedLower, "===", categoryLower);
+        
+        if (selectedLower === categoryLower) {
+          articleItems[i].classList.add("active");
+          console.log("MATCH - Showing item", i);
+        } else {
+          articleItems[i].classList.remove("active");
+          console.log("NO MATCH - Hiding item", i);
         }
-        // Handle specific mappings
-        else if (selectedValue === "edge ai" && categoryLower === "edge ai") {
-          shouldShow = true;
-        }
-        else if (selectedValue === "linux kernel" && categoryLower === "linux kernel") {
-          shouldShow = true;
-        }
-        else if (selectedValue === "gpu programming" && categoryLower === "gpu programming") {
-          shouldShow = true;
-        }
-      }
-      
-      if (shouldShow) {
-        articleItems[i].classList.add("active");
       } else {
         articleItems[i].classList.remove("active");
+        console.log("No category found for item", i);
       }
     }
   }
@@ -142,7 +137,6 @@ for (let i = 0; i < articlesFilterBtn.length; i++) {
     }
     this.classList.add("active");
     lastClickedBtnArticles = this;
-
   });
 }
 

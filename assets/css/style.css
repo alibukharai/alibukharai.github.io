@@ -550,6 +550,12 @@ main {
   border-radius: 20px;
   padding: 25px;
   margin-bottom: 20px;
+  display: none;
+}
+
+.article-item.active {
+  display: block;
+  animation: scaleUp 0.25s ease forwards;
 }
 
 .article-item .article-title {
