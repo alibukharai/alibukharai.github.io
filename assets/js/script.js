@@ -212,7 +212,7 @@ const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
 // Store current page in sessionStorage
-let currentPage = sessionStorage.getItem('currentPage') || 'about';
+let currentPage = sessionStorage.getItem('currentPage') || 'home';
 
 // Function to set active page
 function setActivePage(pageName) {
@@ -240,6 +240,6 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 // Handle browser back/forward buttons
 window.addEventListener('popstate', function() {
-  const savedPage = sessionStorage.getItem('currentPage') || 'about';
+  const savedPage = sessionStorage.getItem('currentPage') || 'home';
   setActivePage(savedPage);
 });
