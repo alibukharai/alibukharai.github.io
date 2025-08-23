@@ -16,28 +16,28 @@ sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); }
 
 
 // custom select variables
-const portfolioSelect = document.querySelector(".portfolio [data-select]");
-const portfolioSelectItems = document.querySelectorAll(".portfolio [data-select-item]");
-const portfolioSelectValue = document.querySelector(".portfolio [data-select-value]");
-const portfolioFilterBtn = document.querySelectorAll(".portfolio [data-filter-btn]");
+const projectsSelect = document.querySelector(".projects [data-select]");
+const projectsSelectItems = document.querySelectorAll(".projects [data-select-item]");
+const projectsSelectValue = document.querySelector(".projects [data-select-value]");
+const projectsFilterBtn = document.querySelectorAll(".projects [data-filter-btn]");
 
 const articlesSelect = document.querySelector(".articles [data-select]");
 const articlesSelectItems = document.querySelectorAll(".articles [data-select-item]");
 const articlesSelectValue = document.querySelector(".articles [data-select-value]");
 const articlesFilterBtn = document.querySelectorAll(".articles [data-filter-btn]");
 
-// Portfolio select functionality
-if (portfolioSelect) {
-  portfolioSelect.addEventListener("click", function () { elementToggleFunc(this); });
+// Projects select functionality
+if (projectsSelect) {
+  projectsSelect.addEventListener("click", function () { elementToggleFunc(this); });
 }
 
-// Portfolio select items
-for (let i = 0; i < portfolioSelectItems.length; i++) {
-  portfolioSelectItems[i].addEventListener("click", function () {
+// Projects select items
+for (let i = 0; i < projectsSelectItems.length; i++) {
+  projectsSelectItems[i].addEventListener("click", function () {
     let selectedValue = this.innerText.toLowerCase();
-    if (portfolioSelectValue) portfolioSelectValue.innerText = this.innerText;
-    elementToggleFunc(portfolioSelect);
-    portfolioFilterFunc(selectedValue);
+    if (projectsSelectValue) projectsSelectValue.innerText = this.innerText;
+    elementToggleFunc(projectsSelect);
+    projectsFilterFunc(selectedValue);
   });
 }
 
@@ -56,17 +56,17 @@ for (let i = 0; i < articlesSelectItems.length; i++) {
   });
 }
 
-// Portfolio filter function
-const portfolioFilterFunc = function (selectedValue) {
-  const portfolioItems = document.querySelectorAll(".portfolio [data-filter-item]");
+// Projects filter function
+const projectsFilterFunc = function (selectedValue) {
+  const projectsItems = document.querySelectorAll(".projects [data-filter-item]");
   
-  for (let i = 0; i < portfolioItems.length; i++) {
+  for (let i = 0; i < projectsItems.length; i++) {
     if (selectedValue === "all") {
-      portfolioItems[i].classList.add("active");
-    } else if (selectedValue === portfolioItems[i].dataset.category.toLowerCase()) {
-      portfolioItems[i].classList.add("active");
+      projectsItems[i].classList.add("active");
+    } else if (selectedValue === projectsItems[i].dataset.category.toLowerCase()) {
+      projectsItems[i].classList.add("active");
     } else {
-      portfolioItems[i].classList.remove("active");
+      projectsItems[i].classList.remove("active");
     }
   }
 }
@@ -106,20 +106,20 @@ const articlesFilterFunc = function (selectedValue) {
   }
 }
 
-// Portfolio filter buttons
-let lastClickedBtnPortfolio = null;
+// Projects filter buttons
+let lastClickedBtnProjects = null;
 
-for (let i = 0; i < portfolioFilterBtn.length; i++) {
-  portfolioFilterBtn[i].addEventListener("click", function () {
+for (let i = 0; i < projectsFilterBtn.length; i++) {
+  projectsFilterBtn[i].addEventListener("click", function () {
     let selectedValue = this.innerText.toLowerCase();
-    if (portfolioSelectValue) portfolioSelectValue.innerText = this.innerText;
-    portfolioFilterFunc(selectedValue);
+    if (projectsSelectValue) projectsSelectValue.innerText = this.innerText;
+    projectsFilterFunc(selectedValue);
 
-    if (lastClickedBtnPortfolio) {
-      lastClickedBtnPortfolio.classList.remove("active");
+    if (lastClickedBtnProjects) {
+      lastClickedBtnProjects.classList.remove("active");
     }
     this.classList.add("active");
-    lastClickedBtnPortfolio = this;
+    lastClickedBtnProjects = this;
   });
 }
 
@@ -142,10 +142,10 @@ for (let i = 0; i < articlesFilterBtn.length; i++) {
 
 // Initialize default filter states and page navigation
 document.addEventListener('DOMContentLoaded', function() {
-  // Set initial active buttons for portfolio
-  const portfolioFirstBtn = document.querySelector('.portfolio [data-filter-btn]');
-  if (portfolioFirstBtn) {
-    lastClickedBtnPortfolio = portfolioFirstBtn;
+  // Set initial active buttons for projects
+  const projectsFirstBtn = document.querySelector('.projects [data-filter-btn]');
+  if (projectsFirstBtn) {
+    lastClickedBtnProjects = projectsFirstBtn;
   }
   
   // Set initial active buttons for articles  
