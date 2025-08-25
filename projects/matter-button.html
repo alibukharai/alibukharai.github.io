@@ -1,131 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matter Button Driver - Ali Hassan Shah</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ESP-BOX Matter Button — Ali Hassan Shah</title>
+  <meta name="description" content="ESP-BOX Matter Button — Professional Matter-compliant smart button implementation using ESP-BOX hardware with button driver optimizations for enhanced reliability." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#FFC107;
+      --accent-dark:#e6ac00;
+      --bg:#0b0b0b;
+      --card-bg: linear-gradient(135deg, rgba(30,30,35,0.9), rgba(18,18,20,0.9));
+      --muted:#b0b0b0;
+      --white:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+      padding-bottom:80px;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header.header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .back-button{color:var(--muted);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+    .back-button:hover{color:var(--accent)}
+    .logo{font-weight:700;font-size:1.6rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero{text-align:center;margin:36px 0}
+    .hero-title{font-size:2.4rem;display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+    .hero-sub{color:var(--muted);max-width:840px;margin:0 auto;font-size:1.05rem}
+    .hero-image{width:100%;max-width:920px;border-radius:14px;margin:28px auto 0;display:block;box-shadow:0 18px 40px rgba(0,0,0,0.45)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+    .card{
+      background:var(--card-bg);
+      border:1px solid rgba(255,193,7,0.08);
+      padding:20px;border-radius:12px;backdrop-filter:blur(8px);
+      transition:transform .22s ease,box-shadow .22s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .card-header{display:flex;align-items:center;margin-bottom:12px;gap:12px}
+    .card-icon{width:46px;height:46px;border-radius:10px;background:rgba(255,193,7,0.08);display:flex;align-items:center;justify-content:center}
+    .card-title{font-size:1.15rem;margin:0}
+    .muted{color:var(--muted);font-size:0.95rem}
+    .contrib{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);align-items:flex-start;margin-bottom:14px}
+    .num{background:var(--accent);color:#000;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+    .feature-list{list-style:none;margin-top:8px;padding-left:0}
+    .feature-item{position:relative;padding-left:34px;margin-bottom:12px;color:var(--muted)}
+    .feature-item i{position:absolute;left:0;top:2px;color:var(--accent);width:16px;text-align:center;font-size:14px}
+    .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .stat{padding:14px;background:rgba(255,255,255,0.03);border-radius:10px;text-align:center;min-width:120px}
+    .stat .n{font-size:1.8rem;color:var(--accent);font-weight:700}
+    .tech-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tech{padding:8px 12px;border-radius:18px;background:linear-gradient(135deg,rgba(255,193,7,0.12),rgba(255,193,7,0.03));color:var(--accent);font-weight:600;font-size:0.9rem;border:1px solid rgba(255,193,7,0.06)}
+    .cta{display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:28px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#000;font-weight:700;text-decoration:none;margin-top:16px;box-shadow:0 8px 20px rgba(255,193,7,0.14)}
+    footer.footer{text-align:center;margin-top:46px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.06);color:var(--muted);font-size:0.95rem}
+    /* responsive tweaks */
+    @media (max-width:720px){.hero-title{font-size:1.8rem}.hero-sub{padding:0 10px}}
+    .badge{display:inline-block;padding:6px 10px;border-radius:12px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:600;font-size:0.85rem;border:1px solid rgba(255,255,255,0.02)}
+    .links{display:flex;flex-direction:column;gap:10px}
+    .resource-link{display:block;padding:12px;border-radius:10px;text-decoration:none;background:rgba(255,255,255,0.01);color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .resource-link:hover{color:var(--white)}
+    .visual-demo{text-align:center;margin:20px 0}
+    .device-visual{width:280px;height:180px;background:linear-gradient(135deg,#2c3e50,#34495e);margin:0 auto;border-radius:15px;position:relative;box-shadow:0 10px 25px rgba(0,0,0,0.4);display:flex;justify-content:center;align-items:center;color:white;font-weight:bold;font-size:1.1rem}
+  </style>
 </head>
 <body>
-  <main>
-    <div class="main-content">
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <a href="../index.html" class="navbar-link">← Back to Portfolio</a>
-          </li>
-        </ul>
-      </nav>
+  <div class="container">
+    <header class="header" role="banner">
+      <a class="back-button" href="../index.html" aria-label="Back to portfolio"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+      <div class="logo" aria-hidden="true">Matter Button</div>
+    </header>
 
-      <article class="about active" data-page="project">
-        <header>
-          <h2 class="h2 article-title">Matter Button Driver</h2>
-        </header>
+    <main>
+      <section class="hero" aria-labelledby="project-title">
+        <h1 id="project-title" class="hero-title">ESP-BOX Matter Button</h1>
+        <p class="hero-sub">A professional Matter-compliant smart button implementation using ESP-BOX hardware, featuring enhanced button driver optimizations and seamless smart home integration across all major ecosystems.</p>
+        <img src="../assets/images/matter.jpg" alt="Matter protocol ecosystem showing interoperability across smart home platforms" class="hero-image">
+      </section>
 
-        <section class="about-text">
-          <div style="text-align: center; margin: 20px 0;">
-            <img src="../assets/images/icon-research.png" alt="Matter Button" style="width: 100px; height: 100px;">
+      <!-- project overview -->
+      <section style="margin-top:18px" aria-label="Project overview">
+        <div class="card" role="region" aria-label="Project overview">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3 class="card-title">Project Overview</h3>
+          </div>
+          <p class="muted">This project presents a comprehensive Matter-compliant smart button implementation using the ESP-BOX development platform, demonstrating seamless integration with major smart home ecosystems including Amazon Alexa, Google Home, and Apple HomeKit. The solution showcases the convergence of Matter protocol standards with embedded hardware design.</p>
+          <p class="muted" style="margin-top:12px">As part of this project, I developed critical enhancements to the ESP32 button driver to ensure full Matter compliance while maintaining backward compatibility. The implementation features touch interface controls, visual feedback through the integrated display, and robust wireless connectivity options supporting both Wi-Fi and Thread protocols.</p>
+          <p class="muted" style="margin-top:12px">The device serves as both a practical smart home control interface and a comprehensive reference implementation for IoT developers looking to integrate Matter protocol capabilities into their embedded systems projects.</p>
+          <a class="cta" href="https://github.com/espressif/esp-box/tree/master/examples/matter_switch" target="_blank" rel="noopener">View project on GitHub <i class="fas fa-external-link-alt" style="font-size:0.9rem"></i></a>
+        </div>
+      </section>
+
+      <!-- contributions -->
+      <section style="margin-top:18px" aria-label="Key contributions and achievements">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-tasks"></i></div>
+            <h3 class="card-title">My Key Contributions</h3>
           </div>
 
-          <h3 class="h3">Project Overview</h3>
-          <p>
-            Architected and implemented a comprehensive Matter-compliant button driver for ESP32 platforms, 
-            enabling seamless integration with Thread-based smart home networks. This driver serves as a 
-            foundation component for various Matter devices requiring button input functionality.
-          </p>
+          <div class="contrib">
+            <div class="num">1</div>
+            <div>
+              <strong>Enhanced ESP32 Button Driver</strong>
+              <p class="muted">Updated the ESP32 button driver with enhanced debouncing algorithms, Matter-compliant event reporting, and improved power efficiency while maintaining full backward compatibility.</p>
+            </div>
+          </div>
 
-          <h3 class="h3">Key Features</h3>
-          <ul style="color: var(--light-gray); margin-left: 20px;">
-            <li>Full Matter 1.0+ specification compliance</li>
-            <li>Multi-button support with individual configuration</li>
-            <li>Advanced debouncing algorithms for reliable input detection</li>
-            <li>Support for various button types (momentary, latching, capacitive)</li>
-            <li>Thread network integration with mesh capabilities</li>
-            <li>Low-power operation with sleep mode compatibility</li>
-            <li>Configurable press patterns (single, double, long press)</li>
-            <li>Real-time event reporting to Matter controllers</li>
+          <div class="contrib">
+            <div class="num">2</div>
+            <div>
+              <strong>Matter Protocol Integration</strong>
+              <p class="muted">Implemented complete Matter standard clusters for On/Off functionality with device commissioning, configuration capabilities, and cross-ecosystem compatibility.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">3</div>
+            <div>
+              <strong>Touch Interface & Visual Feedback</strong>
+              <p class="muted">Designed intuitive touch controls with real-time visual feedback through the integrated display, providing clear user interaction states and system status indicators.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">4</div>
+            <div>
+              <strong>Multi-Protocol Connectivity</strong>
+              <p class="muted">Implemented robust wireless connectivity supporting both Wi-Fi and Thread protocols with seamless failover and optimized power consumption for always-on operation.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">5</div>
+            <div>
+              <strong>OTA Update System</strong>
+              <p class="muted">Integrated over-the-air update capabilities for maintenance and feature additions, ensuring long-term device sustainability and security updates.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Implementation & highlights -->
+      <section style="margin-top:18px" aria-label="Implementation and highlights">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-cogs"></i></div>
+            <h3 class="card-title">Implementation & Highlights</h3>
+          </div>
+
+          <p class="muted"><strong>How it works (high level)</strong></p>
+          <ul class="feature-list" aria-hidden="false">
+            <li class="feature-item"><i class="fas fa-play"></i> Touch input captured → button driver processes with enhanced debouncing → Matter protocol handles state changes → broadcast to all connected ecosystems → visual feedback displayed on LCD.</li>
+            <li class="feature-item"><i class="fas fa-shapes"></i> Multi-task FreeRTOS design: separate tasks for touch input processing, network communication, and UI updates to maintain responsive user experience.</li>
+            <li class="feature-item"><i class="fas fa-lock"></i> Secure device commissioning using Matter standard procedures with cryptographic authentication and encrypted communication channels.</li>
+            <li class="feature-item"><i class="fas fa-stream"></i> Real-time state synchronization across all connected smart home platforms with conflict resolution and retry mechanisms.</li>
+            <li class="feature-item"><i class="fas fa-server"></i> Robust offline operation: local state management with automatic sync when connectivity is restored, ensuring reliable operation even during network outages.</li>
           </ul>
 
-          <h3 class="h3">Technical Implementation</h3>
-          <p>
-            Developed using ESP Matter SDK with custom hardware abstraction layer for button interfacing. 
-            The driver implements state machines for robust button event detection, handles interrupt-driven 
-            input processing, and provides secure communication through Matter's encrypted messaging protocols.
-          </p>
+          <p class="muted" style="margin-top:10px"><strong>Notable engineering decisions</strong></p>
+          <ul class="feature-list">
+            <li class="feature-item"><i class="fas fa-lightbulb"></i> Enhanced button driver with configurable debouncing algorithms optimized for different use cases (single press, double press, long press).</li>
+            <li class="feature-item"><i class="fas fa-tachometer-alt"></i> Prioritized deterministic response times for user interactions while managing network communication in background tasks.</li>
+            <li class="feature-item"><i class="fas fa-book"></i> Modular design pattern enabling easy extension for additional button types and interaction patterns while maintaining Matter compliance.</li>
+          </ul>
 
-          <h3 class="h3">Matter Integration</h3>
-          <p>
-            The driver implements Matter's Generic Switch cluster, enabling universal compatibility with 
-            Matter controllers from Apple, Google, Amazon, and Samsung. It supports commissioning via 
-            QR codes and NFC, automatic device discovery, and over-the-air updates through Matter's 
-            standardized protocols.
-          </p>
-
-          <h3 class="h3">Hardware Abstraction</h3>
-          <p>
-            Features a flexible HAL (Hardware Abstraction Layer) that supports various button configurations 
-            including GPIO-based buttons, I2C expander buttons, and capacitive touch interfaces. The driver 
-            automatically adapts to different hardware configurations through compile-time and runtime configuration.
-          </p>
-
-          <h3 class="h3">Technologies Used</h3>
-          <div class="service-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 20px 0;">
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-c.png" alt="C/C++" width="40">
-              </div>
-              <h4 class="h4 service-item-title">ESP Matter SDK</h4>
-            </div>
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-hw.png" alt="Hardware" width="40">
-              </div>
-              <h4 class="h4 service-item-title">Thread Protocol</h4>
-            </div>
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-research.png" alt="Research" width="40">
-              </div>
-              <h4 class="h4 service-item-title">Matter Protocol</h4>
-            </div>
-          </div>
-
-          <h3 class="h3">Applications</h3>
-          <p>
-            This button driver serves as the foundation for various smart home devices including light switches, 
-            scene controllers, emergency buttons, and general-purpose input devices. Its Matter compliance ensures 
-            interoperability across different smart home ecosystems and future-proofs devices against protocol changes.
-          </p>
-
-          <h3 class="h3">Performance Optimization</h3>
-          <p>
-            Optimized for ultra-low power consumption with advanced sleep modes and interrupt-driven architecture. 
-            The driver can operate for years on battery power while maintaining instant responsiveness to button presses 
-            and reliable network connectivity.
-          </p>
-
-          <h3 class="h3">Impact</h3>
-          <p>
-            This Matter button driver has been integrated into Espressif's official Matter SDK and serves as a 
-            reference implementation for developers worldwide. It has enabled hundreds of companies to create 
-            Matter-compatible devices with reliable button functionality, accelerating the adoption of the Matter standard.
-          </p>
-
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="../index.html" class="form-btn" style="display: inline-block; text-decoration: none;">
-              <ion-icon name="arrow-back-outline"></ion-icon>
-              <span>Back to Portfolio</span>
+          <div style="margin-top:12px">
+            <a class="cta" href="https://github.com/esp-arduino-libs/ESP32_Button" target="_blank" rel="noopener">
+              View Enhanced Button Driver <i class="fas fa-external-link-alt" style="font-size:0.9rem"></i>
             </a>
           </div>
-        </section>
-      </article>
-    </div>
-  </main>
+        </div>
+      </section>
 
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      <!-- technologies -->
+      <section style="margin-top:18px" aria-label="Technologies">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-code"></i></div>
+            <h3 class="card-title">Technologies & Languages</h3>
+          </div>
+          
+          <p class="muted" style="margin-bottom:12px"><strong>Programming Languages</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">C</span>
+            <span class="tech">C++</span>
+            <span class="tech">Python</span>
+          </div>
+          
+          <p class="muted" style="margin-top:16px;margin-bottom:12px"><strong>Frameworks & Protocols</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">ESP32-S3</span>
+            <span class="tech">ESP-IDF</span>
+            <span class="tech">Matter Protocol</span>
+            <span class="tech">FreeRTOS</span>
+            <span class="tech">Wi-Fi</span>
+            <span class="tech">Thread</span>
+            <span class="tech">LVGL</span>
+            <span class="tech">MbedTLS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Smart Home Integration -->
+      <section style="margin-top:18px" aria-label="Smart home integration">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-home"></i></div>
+            <h3 class="card-title">Smart Home Integration</h3>
+          </div>
+
+          <p class="muted">This project demonstrates practical Matter protocol implementation for real-world smart home applications. The ESP-BOX Matter Button serves as a versatile control interface that integrates seamlessly with major smart home ecosystems:</p>
+
+          <div class="grid" style="margin-top:16px">
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-house-user"></i></div>
+                <h4 style="font-size:1rem">Home Automation</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Control lights, fans, and appliances with intuitive touch interface or voice commands through integrated smart assistants.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-random"></i></div>
+                <h4 style="font-size:1rem">Scene Control</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Activate complex automation scenarios like "Movie Night" or "Good Morning" with a single button press.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-shield-alt"></i></div>
+                <h4 style="font-size:1rem">Security Integration</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Interface with security systems for alarm control, access management, and emergency response triggers.</p>
+            </div>
+          </div>
+
+          <p class="muted" style="margin-top:16px">The device bridges different smart home ecosystems, allowing unified control of both Matter and non-Matter devices through a single, reliable interface with professional-grade reliability and performance.</p>
+        </div>
+      </section>
+
+      <!-- resources -->
+      <section style="margin-top:18px" aria-label="Project resources">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-link"></i></div>
+            <h3 class="card-title">Resources & Implementation</h3>
+          </div>
+
+          <div class="links">
+            <a class="resource-link" href="https://github.com/espressif/esp-box/tree/master/examples/matter_switch" target="_blank" rel="noopener">
+              <strong>GitHub — ESP-BOX Matter Switch</strong>
+              <div class="muted">Complete source code and implementation guide for the Matter button project.</div>
+            </a>
+
+            <a class="resource-link" href="https://github.com/esp-arduino-libs/ESP32_Button" target="_blank" rel="noopener">
+              <strong>GitHub — Enhanced ESP32 Button Driver</strong>
+              <div class="muted">Updated button driver with Matter compliance and enhanced reliability features.</div>
+            </a>
+
+            <a class="resource-link" href="https://docs.espressif.com/projects/esp-matter/en/latest/" target="_blank" rel="noopener">
+              <strong>ESP Matter Documentation</strong>
+              <div class="muted">Official documentation for Matter protocol implementation on ESP32 platforms.</div>
+            </a>
+          </div>
+
+          <div style="margin-top:12px">
+            <a class="cta" href="https://github.com/espressif/esp-box/tree/master/examples/matter_switch" target="_blank" rel="noopener">
+              Explore the project <i class="fas fa-external-link-alt" style="font-size:0.9rem"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div>© 2024 Ali Hassan Shah — ESP-BOX Matter Button</div>
+      <div style="margin-top:8px"><span class="badge">Matter Protocol · ESP-IDF · Smart Home</span></div>
+    </footer>
+  </div>
 </body>
 </html>

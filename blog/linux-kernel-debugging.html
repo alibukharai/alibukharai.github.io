@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Linux Kernel Debugging Techniques - Ali Hassan Shah</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <div class="main-content">
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="../index.html" class="navbar-link">← Back to Articles</a>
+          </li>
+        </ul>
+      </nav>
+
+      <article class="about active" data-page="article">
+        <header>
+          <h2 class="h2 article-title">Advanced Linux Kernel Debugging Techniques</h2>
+          <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 20px;">
+            Published on Medium • 15 min read • March 2024
+          </p>
+        </header>
+
+        <section class="about-text">
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="../assets/images/icon-c.png" alt="Linux Kernel Debugging" style="width: 100px; height: 100px;">
+          </div>
+
+          <h3 class="h3">Introduction</h3>
+          <p>
+            Debugging the Linux kernel is one of the most challenging aspects of system-level programming. 
+            This comprehensive guide explores advanced debugging techniques that have proven invaluable in 
+            my experience developing embedded systems and custom kernel modules.
+          </p>
+
+          <h3 class="h3">Key Topics Covered</h3>
+          <ul style="color: var(--light-gray); margin-left: 20px;">
+            <li>Setting up KGDB for remote debugging</li>
+            <li>Using ftrace for function tracing and performance analysis</li>
+            <li>Dynamic debugging with pr_debug and dyndbg</li>
+            <li>Memory debugging with KASAN and SLUB_DEBUG</li>
+            <li>Analyzing kernel crashes with crash utility</li>
+            <li>Real-time debugging techniques for embedded systems</li>
+            <li>Custom debugging infrastructure for driver development</li>
+          </ul>
+
+          <h3 class="h3">Essential Tools</h3>
+          <p>
+            The article covers a comprehensive toolkit including GDB with kernel extensions, 
+            perf profiling, SystemTap for dynamic instrumentation, and custom debugging 
+            frameworks I've developed for embedded Linux systems.
+          </p>
+
+          <h3 class="h3">Practical Examples</h3>
+          <p>
+            Each technique is illustrated with real-world examples from my work on SR-IOV 
+            virtualization, GPU driver development, and embedded system optimization. 
+            Code snippets and step-by-step procedures are provided throughout.
+          </p>
+
+          <div style="text-align: center; margin: 40px 0;">
+            <a href="https://medium.com/@engg.alibukharai/advanced-linux-kernel-debugging" target="_blank" class="form-btn">
+              <ion-icon name="link-outline"></ion-icon>
+              <span>Read Full Article on Medium</span>
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

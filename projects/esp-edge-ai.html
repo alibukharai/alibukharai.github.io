@@ -1,135 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESP Edge AI Framework - Ali Hassan Shah</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ESP32-S3 Edge AI Projects — Ali Hassan Shah</title>
+  <meta name="description" content="ESP32-S3 Edge AI Projects — Hand gesture recognition and human activity classification using ESP-DL framework on embedded hardware by Ali Hassan Shah." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#10b981;
+      --accent-dark:#059669;
+      --bg:#0b0b0b;
+      --card-bg: linear-gradient(135deg, rgba(30,30,35,0.9), rgba(18,18,20,0.9));
+      --muted:#b0b0b0;
+      --white:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+      padding-bottom:80px;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header.header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .back-button{color:var(--muted);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+    .back-button:hover{color:var(--accent)}
+    .logo{font-weight:700;font-size:1.6rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero{text-align:center;margin:36px 0}
+    .hero-title{font-size:2.4rem;display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+    .hero-sub{color:var(--muted);max-width:840px;margin:0 auto;font-size:1.05rem}
+    .card{
+      background:var(--card-bg);
+      border:1px solid rgba(16,185,129,0.08);
+      padding:20px;border-radius:12px;backdrop-filter:blur(8px);
+      transition:transform .22s ease,box-shadow .22s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .card-header{display:flex;align-items:center;margin-bottom:12px;gap:12px}
+    .card-icon{width:46px;height:46px;border-radius:10px;background:rgba(16,185,129,0.08);display:flex;align-items:center;justify-content:center}
+    .card-title{font-size:1.15rem;margin:0}
+    .muted{color:var(--muted);font-size:0.95rem}
+    .contrib{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);align-items:flex-start;margin-bottom:14px}
+    .num{background:var(--accent);color:#000;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+    .feature-list{list-style:none;margin-top:8px;padding-left:0}
+    .feature-item{position:relative;padding-left:34px;margin-bottom:12px;color:var(--muted)}
+    .feature-item i{position:absolute;left:0;top:2px;color:var(--accent);width:16px;text-align:center;font-size:14px}
+    .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .stat{padding:14px;background:rgba(255,255,255,0.03);border-radius:10px;text-align:center;min-width:120px}
+    .stat .n{font-size:1.8rem;color:var(--accent);font-weight:700}
+    .tech-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tech{padding:8px 12px;border-radius:18px;background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.03));color:var(--accent);font-weight:600;font-size:0.9rem;border:1px solid rgba(16,185,129,0.06)}
+    .cta{display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:28px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#000;font-weight:700;text-decoration:none;margin-top:16px;box-shadow:0 8px 20px rgba(16,185,129,0.14)}
+    footer.footer{text-align:center;margin-top:46px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.06);color:var(--muted);font-size:0.95rem}
+    .badge{display:inline-block;padding:6px 10px;border-radius:12px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:600;font-size:0.85rem;border:1px solid rgba(255,255,255,0.02)}
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-top:18px}
+    .project-card{background:var(--card-bg);border:1px solid rgba(16,185,129,0.08);border-radius:12px;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease}
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .project-image{width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(255,255,255,0.06);transition:transform .3s ease}
+    .project-card:hover .project-image{transform:scale(1.05)}
+    .project-content{padding:20px}
+    .project-title{font-size:1.2rem;margin-bottom:12px;color:var(--white)}
+    .project-desc{color:var(--muted);font-size:0.9rem;margin-bottom:14px;line-height:1.6}
+    /* responsive tweaks */
+    @media (max-width:720px){.hero-title{font-size:1.8rem}.hero-sub{padding:0 10px}}
+  </style>
 </head>
 <body>
-  <main>
-    <div class="main-content">
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <a href="../index.html" class="navbar-link">← Back to Portfolio</a>
-          </li>
-        </ul>
-      </nav>
+  <div class="container">
+    <header class="header" role="banner">
+      <a class="back-button" href="../index.html" aria-label="Back to portfolio"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+      <div class="logo" aria-hidden="true">ESP Edge AI</div>
+    </header>
 
-      <article class="about active" data-page="project">
-        <header>
-          <h2 class="h2 article-title">ESP Edge AI Framework</h2>
-        </header>
+    <main>
+      <section class="hero" aria-labelledby="project-title">
+        <h1 id="project-title" class="hero-title">ESP32-S3 Edge AI Projects</h1>
+        <p class="hero-sub">Advanced machine learning inference on embedded hardware: hand gesture recognition and human activity classification using ESP-DL framework. Achieving real-time performance with minimal power consumption on resource-constrained devices.</p>
+        <!-- <img class="hero-image" src="../assets/images/hand.webp" alt="ESP32-S3 Edge AI demonstration showing hand gesture recognition" style="width:100%;max-width:600px;border-radius:14px;margin:28px auto 0;display:block;box-shadow:0 18px 40px rgba(0,0,0,0.45)" /> -->
+      </section>
 
-        <section class="about-text">
-          <div style="text-align: center; margin: 20px 0;">
-            <img src="../assets/images/icon-python.png" alt="Edge AI Framework" style="width: 100px; height: 100px;">
-          </div>
-
-          <h3 class="h3">Project Overview</h3>
-          <p>
-            Designed and developed a comprehensive edge AI framework for ESP32 platforms, enabling deployment of 
-            machine learning models directly on microcontrollers. This framework optimizes AI inference for 
-            resource-constrained environments while maintaining real-time performance for IoT applications.
-          </p>
-
-          <h3 class="h3">Key Features</h3>
-          <ul style="color: var(--light-gray); margin-left: 20px;">
-            <li>Optimized TensorFlow Lite integration for ESP32</li>
-            <li>Model quantization and compression tools</li>
-            <li>Real-time inference with minimal latency</li>
-            <li>Support for vision, audio, and sensor data processing</li>
-            <li>Dynamic model loading and switching</li>
-            <li>Memory-efficient execution with PSRAM utilization</li>
-            <li>Power optimization for battery-powered devices</li>
-            <li>Developer-friendly API with Python toolchain</li>
-          </ul>
-
-          <h3 class="h3">Framework Architecture</h3>
-          <p>
-            Built on a modular architecture that separates model management, inference engine, and hardware abstraction. 
-            The framework provides automatic optimization for different ESP32 variants, intelligent memory management, 
-            and seamless integration with ESP-IDF development environment.
-          </p>
-
-          <h3 class="h3">Model Optimization</h3>
-          <p>
-            Implements advanced model optimization techniques including 8-bit and 16-bit quantization, weight pruning, 
-            and layer fusion. The framework includes tools for model compression that can reduce model size by up to 75% 
-            while maintaining inference accuracy suitable for edge applications.
-          </p>
-
-          <h3 class="h3">Use Cases</h3>
-          <ul style="color: var(--light-gray); margin-left: 20px;">
-            <li>Computer vision for security cameras and quality control</li>
-            <li>Audio classification for voice commands and sound detection</li>
-            <li>Sensor data analysis for predictive maintenance</li>
-            <li>Gesture recognition for human-machine interfaces</li>
-            <li>Environmental monitoring with intelligent alerts</li>
-            <li>Industrial automation with real-time decision making</li>
-          </ul>
-
-          <h3 class="h3">Technologies Used</h3>
-          <div class="service-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 20px 0;">
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-c.png" alt="C/C++" width="40">
+      <!-- projects showcase -->
+      <section style="margin-top:18px" aria-label="Project showcase">
+        <div class="project-grid">
+          <div class="project-card">
+            <img class="project-image" src="../assets/images/hand.webp" alt="Hand Gesture Recognition System" />
+            <div class="project-content">
+              <h3 class="project-title">Hand Gesture Recognition</h3>
+              <p class="project-desc">Advanced computer vision system leveraging custom CNN architecture to interpret hand gestures in real-time. Features optimized inference pipeline with 95% accuracy and sub-50ms latency, perfect for interactive IoT applications.</p>
+              <div class="tech-list">
+                <span class="tech">CNN</span>
+                <span class="tech">ESP-DL</span>
+                <span class="tech">OpenCV</span>
+                <span class="tech">Real-time</span>
               </div>
-              <h4 class="h4 service-item-title">C/C++</h4>
-            </div>
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-python.png" alt="Python" width="40">
-              </div>
-              <h4 class="h4 service-item-title">Python/TensorFlow</h4>
-            </div>
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-research.png" alt="AI/ML" width="40">
-              </div>
-              <h4 class="h4 service-item-title">TensorFlow Lite</h4>
             </div>
           </div>
+          
+          <div class="project-card">
+            <img class="project-image" src="../assets/images/activity.webp" alt="Human Activity Recognition System" />
+            <div class="project-content">
+              <h3 class="project-title">Human Activity Recognition</h3>
+              <p class="project-desc">Intelligent activity classification system using deep learning to analyze IMU sensor patterns. Processes accelerometer time-series data to identify human activities with >90% accuracy on embedded hardware.</p>
+              <div class="tech-list">
+                <span class="tech">Deep Learning</span>
+                <span class="tech">IMU Fusion</span>
+                <span class="tech">Time Series</span>
+                <span class="tech">ESP32-S3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <h3 class="h3">Performance Metrics</h3>
-          <p>
-            The framework achieves impressive performance metrics including sub-100ms inference times for common 
-            vision models, support for models up to 4MB in size, and power consumption as low as 50mA during 
-            inference operations. Memory usage is optimized to work within the constraints of ESP32's RAM and 
-            external PSRAM configurations.
-          </p>
+      <!-- project overview -->
+      <section style="margin-top:18px" aria-label="Project overview">
+        <div class="card" role="region" aria-label="Project overview">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3 class="card-title">Project Overview</h3>
+          </div>
+          <p class="muted">These cutting-edge projects showcase the successful implementation of sophisticated AI models on ESP32-S3 microcontrollers using Espressif's ESP-DL framework. Both solutions achieve real-time machine learning inference on resource-constrained embedded devices without cloud dependency, demonstrating the transformative potential of edge AI in modern IoT applications.</p>
+          <p class="muted" style="margin-top:12px">The hand gesture recognition system represents a breakthrough in embedded computer vision, utilizing a custom-designed CNN architecture to interpret complex hand movements captured through an integrated camera module. Meanwhile, the human activity recognition system processes multi-axis IMU sensor data through advanced deep learning models to classify diverse human activities from accelerometer time-series patterns with remarkable precision.</p>
+          <p class="muted" style="margin-top:12px">Both projects required extensive optimization engineering including advanced model quantization techniques, sophisticated memory management strategies, and real-time performance tuning to achieve production-ready results on embedded hardware with strict power and computational constraints. The solutions demonstrate practical TinyML deployment at scale.</p>
+          
+          <div class="stats" style="margin-top:20px">
+            <div class="stat">
+              <div class="n">≤50ms</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Inference Time</div>
+            </div>
+            <div class="stat">
+              <div class="n">>90%</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Accuracy</div>
+            </div>
+            <div class="stat">
+              <div class="n"><2MB</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Model Size</div>
+            </div>
+            <div class="stat">
+              <div class="n"><100mA</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Power Usage</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <h3 class="h3">Developer Tools</h3>
-          <p>
-            Includes comprehensive Python toolchain for model conversion, optimization, and deployment. The framework 
-            provides debugging tools, performance profilers, and visualization utilities that simplify the development 
-            process for engineers new to edge AI deployment.
-          </p>
+      <!-- contributions -->
+      <section style="margin-top:18px" aria-label="Contributions and achievements">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-tasks"></i></div>
+            <h3 class="card-title">My Key Contributions</h3>
+          </div>
 
-          <h3 class="h3">Impact</h3>
-          <p>
-            This edge AI framework has enabled thousands of developers to deploy machine learning models on ESP32 
-            platforms, democratizing access to AI capabilities in IoT devices. The framework has been adopted by 
-            major IoT companies and is part of Espressif's official AI development ecosystem, powering innovative 
-            applications from smart agriculture to industrial automation.
-          </p>
+          <div class="contrib">
+            <div class="num">1</div>
+            <div>
+              <strong>Hand Gesture Recognition System</strong>
+              <p class="muted">Designed and trained a CNN model for recognizing 10+ hand gestures with 95% accuracy, optimized through quantization for ESP32-S3 deployment with sub-50ms inference times.</p>
+            </div>
+          </div>
 
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="../index.html" class="form-btn" style="display: inline-block; text-decoration: none;">
-              <ion-icon name="arrow-back-outline"></ion-icon>
-              <span>Back to Portfolio</span>
+          <div class="contrib">
+            <div class="num">2</div>
+            <div>
+              <strong>Human Activity Recognition System</strong>
+              <p class="muted">Developed deep learning models to classify 6+ activities from IMU time-series data, achieving >90% accuracy with real-time processing on resource-constrained hardware.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">3</div>
+            <div>
+              <strong>Model Optimization & Deployment</strong>
+              <p class="muted">Applied quantization and pruning techniques to reduce model size by 75%, implementing efficient memory management and real-time inference pipelines using ESP-DL framework.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">4</div>
+            <div>
+              <strong>End-to-End System Integration</strong>
+              <p class="muted">Integrated camera modules, IMU sensors, and display systems with optimized firmware, creating complete demonstration applications with intuitive user interfaces.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">5</div>
+            <div>
+              <strong>Performance Engineering</strong>
+              <p class="muted">Achieved production-ready performance metrics: <50ms inference, <2MB model size, <100mA power consumption through systematic optimization and hardware-specific tuning.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Implementation & highlights -->
+      <section style="margin-top:18px" aria-label="Implementation and highlights">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-cogs"></i></div>
+            <h3 class="card-title">Implementation & Technical Highlights</h3>
+          </div>
+
+          <p class="muted"><strong>Development Workflow</strong></p>
+          <ul class="feature-list" aria-hidden="false">
+            <li class="feature-item"><i class="fas fa-database"></i> Data collection and preprocessing using Python and TensorFlow for model training on powerful hardware.</li>
+            <li class="feature-item"><i class="fas fa-brain"></i> Custom neural network architecture design optimized for edge deployment with minimal computational overhead.</li>
+            <li class="feature-item"><i class="fas fa-compress"></i> Model quantization and pruning to reduce size by 75% while maintaining accuracy for embedded deployment.</li>
+            <li class="feature-item"><i class="fas fa-microchip"></i> ESP-DL framework integration with optimized memory allocation and real-time inference scheduling.</li>
+            <li class="feature-item"><i class="fas fa-tachometer-alt"></i> Multi-task FreeRTOS implementation ensuring deterministic latency for sensor data processing and UI responsiveness.</li>
+          </ul>
+
+          <p class="muted" style="margin-top:10px"><strong>Technical Architecture</strong></p>
+          <ul class="feature-list">
+            <li class="feature-item"><i class="fas fa-stream"></i> Efficient data pipeline with preprocessed sensor inputs feeding directly into optimized neural network inference.</li>
+            <li class="feature-item"><i class="fas fa-memory"></i> PSRAM utilization for model parameters with SRAM optimization for intermediate activations and buffers.</li>
+            <li class="feature-item"><i class="fas fa-clock"></i> Power-aware scheduling with sleep modes between inference cycles, minimizing overall power consumption.</li>
+            <li class="feature-item"><i class="fas fa-shield-alt"></i> Robust error handling and graceful degradation for production-ready embedded deployment.</li>
+          </ul>
+
+          <p class="muted" style="margin-top:12px">These projects showcase the practical application of advanced machine learning techniques on embedded hardware, demonstrating that sophisticated AI capabilities can be deployed effectively in resource-constrained environments.</p>
+        </div>
+      </section>
+
+      <!-- technologies -->
+      <section style="margin-top:18px" aria-label="Technologies">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-code"></i></div>
+            <h3 class="card-title">Technologies & Frameworks</h3>
+          </div>
+          
+          <p class="muted" style="margin-bottom:12px"><strong>Programming Languages</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">C</span>
+            <span class="tech">C++</span>
+            <span class="tech">Python</span>
+          </div>
+          
+          <p class="muted" style="margin-top:16px;margin-bottom:12px"><strong>Machine Learning & Embedded Frameworks</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">TensorFlow</span>
+            <span class="tech">ESP-DL</span>
+            <span class="tech">ESP-IDF</span>
+            <span class="tech">FreeRTOS</span>
+            <span class="tech">OpenCV</span>
+            <span class="tech">NumPy</span>
+          </div>
+          
+          <p class="muted" style="margin-top:16px;margin-bottom:12px"><strong>Hardware & Sensors</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">ESP32-S3</span>
+            <span class="tech">Camera Module</span>
+            <span class="tech">IMU Sensors</span>
+            <span class="tech">LCD Display</span>
+            <span class="tech">PSRAM</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- performance metrics -->
+      <section style="margin-top:18px" aria-label="Performance metrics">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h3 class="card-title">Performance Metrics & Achievements</h3>
+          </div>
+
+          <p class="muted" style="margin-bottom:16px"><strong>Key Performance Indicators</strong></p>
+          
+          <div class="stats">
+            <div class="stat">
+              <div class="n">95%</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Gesture Recognition Accuracy</div>
+            </div>
+            <div class="stat">
+              <div class="n">>90%</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Activity Classification Accuracy</div>
+            </div>
+            <div class="stat">
+              <div class="n">≤50ms</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Maximum Inference Time</div>
+            </div>
+            <div class="stat">
+              <div class="n">75%</div>
+              <div style="font-size:0.85rem;color:var(--muted)">Model Size Reduction</div>
+            </div>
+          </div>
+
+          <p class="muted" style="margin-top:16px"><strong>Technical Optimizations</strong></p>
+          <ul class="feature-list">
+            <li class="feature-item"><i class="fas fa-compress-arrows-alt"></i> Quantization from 32-bit to 8-bit precision reducing memory footprint by 4x</li>
+            <li class="feature-item"><i class="fas fa-cut"></i> Neural network pruning removing 60% of parameters while maintaining accuracy</li>
+            <li class="feature-item"><i class="fas fa-lightning-bolt"></i> Hardware-specific optimizations leveraging ESP32-S3 dual-core architecture</li>
+            <li class="feature-item"><i class="fas fa-battery-three-quarters"></i> Power optimization achieving <100mA average consumption during active inference</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- resources & achievements -->
+      <section style="margin-top:18px" aria-label="Resources and achievements">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-trophy"></i></div>
+            <h3 class="card-title">Project Impact & Resources</h3>
+          </div>
+
+          <p class="muted" style="margin-bottom:16px"><strong>Project Achievements</strong></p>
+          <ul class="feature-list">
+            <li class="feature-item"><i class="fas fa-medal"></i> Successfully deployed production-ready AI models on resource-constrained ESP32-S3 hardware</li>
+            <li class="feature-item"><i class="fas fa-chart-line"></i> Achieved 75% model size reduction while maintaining >90% accuracy through advanced optimization</li>
+            <li class="feature-item"><i class="fas fa-bolt"></i> Delivered real-time inference performance with <50ms latency suitable for interactive applications</li>
+            <li class="feature-item"><i class="fas fa-battery-three-quarters"></i> Optimized power consumption to <100mA enabling battery-powered IoT deployments</li>
+          </ul>
+
+          <p class="muted" style="margin-top:16px;margin-bottom:12px"><strong>Technical Documentation</strong></p>
+          <p class="muted">These projects demonstrate the practical application of TinyML and edge AI principles, showcasing how sophisticated machine learning models can be effectively deployed on embedded systems without compromising performance or accuracy.</p>
+          
+          <div style="margin-top:16px">
+            <a class="cta" href="../index.html">
+              <i class="fas fa-arrow-left" style="font-size:0.9rem"></i> Back to Portfolio
             </a>
           </div>
-        </section>
-      </article>
-    </div>
-  </main>
+        </div>
+      </section>
+    </main>
 
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <footer class="footer" role="contentinfo">
+      <div>© 2024 Ali Hassan Shah — ESP32-S3 Edge AI Projects</div>
+      <div style="margin-top:8px"><span class="badge">ESP-DL · TensorFlow · Edge AI</span></div>
+    </footer>
+  </div>
 </body>
 </html>

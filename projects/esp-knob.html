@@ -1,116 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESP Knob IoT Device - Ali Hassan Shah</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ESP32 Smart Knob — Ali Hassan Shah</title>
+  <meta name="description" content="ESP32 Smart Knob — Professional Matter-compliant smart home rotary controller with precision encoder processing and advanced firmware development. Comprehensive hardware-software co-design for smart home control applications." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#FFC107;
+      --accent-dark:#e6ac00;
+      --bg:#0b0b0b;
+      --card-bg: linear-gradient(135deg, rgba(30,30,35,0.9), rgba(18,18,20,0.9));
+      --muted:#b0b0b0;
+      --white:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+      padding-bottom:80px;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header.header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .back-button{color:var(--muted);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+    .back-button:hover{color:var(--accent)}
+    .logo{font-weight:700;font-size:1.6rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero{text-align:center;margin:36px 0}
+    .hero-title{font-size:2.4rem;display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+    .hero-sub{color:var(--muted);max-width:840px;margin:0 auto;font-size:1.05rem}
+    .hero-image{width:100%;max-width:920px;border-radius:14px;margin:28px auto 0;display:block;box-shadow:0 18px 40px rgba(0,0,0,0.45)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+    .card{
+      background:var(--card-bg);
+      border:1px solid rgba(255,193,7,0.08);
+      padding:20px;border-radius:12px;backdrop-filter:blur(8px);
+      transition:transform .22s ease,box-shadow .22s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .card-header{display:flex;align-items:center;margin-bottom:12px;gap:12px}
+    .card-icon{width:46px;height:46px;border-radius:10px;background:rgba(255,193,7,0.08);display:flex;align-items:center;justify-content:center}
+    .card-title{font-size:1.15rem;margin:0}
+    .muted{color:var(--muted);font-size:0.95rem}
+    .contrib{display:flex;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);align-items:flex-start;margin-bottom:14px}
+    .num{background:var(--accent);color:#000;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+    .feature-list{list-style:none;margin-top:8px;padding-left:0}
+    .feature-item{position:relative;padding-left:34px;margin-bottom:12px;color:var(--muted)}
+    .feature-item i{position:absolute;left:0;top:2px;color:var(--accent);width:16px;text-align:center;font-size:14px}
+    .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .stat{padding:14px;background:rgba(255,255,255,0.03);border-radius:10px;text-align:center;min-width:120px}
+    .stat .n{font-size:1.8rem;color:var(--accent);font-weight:700}
+    .tech-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tech{padding:8px 12px;border-radius:18px;background:linear-gradient(135deg,rgba(255,193,7,0.12),rgba(255,193,7,0.03));color:var(--accent);font-weight:600;font-size:0.9rem;border:1px solid rgba(255,193,7,0.06)}
+    .cta{display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:28px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#000;font-weight:700;text-decoration:none;margin-top:16px;box-shadow:0 8px 20px rgba(255,193,7,0.14)}
+    footer.footer{text-align:center;margin-top:46px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.06);color:var(--muted);font-size:0.95rem}
+    /* responsive tweaks */
+    @media (max-width:720px){.hero-title{font-size:1.8rem}.hero-sub{padding:0 10px}}
+    .badge{display:inline-block;padding:6px 10px;border-radius:12px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:600;font-size:0.85rem;border:1px solid rgba(255,255,255,0.02)}
+    .links{display:flex;flex-direction:column;gap:10px}
+    .resource-link{display:block;padding:12px;border-radius:10px;text-decoration:none;background:rgba(255,255,255,0.01);color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .resource-link:hover{color:var(--white)}
+    @keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  </style>
 </head>
 <body>
-  <main>
-    <div class="main-content">
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <a href="../index.html" class="navbar-link">← Back to Portfolio</a>
-          </li>
-        </ul>
-      </nav>
+  <div class="container">
+    <header class="header" role="banner">
+      <a class="back-button" href="../index.html" aria-label="Back to portfolio"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+      <div class="logo" aria-hidden="true">Smart Knob</div>
+    </header>
 
-      <article class="about active" data-page="project">
-        <header>
-          <h2 class="h2 article-title">ESP Knob IoT Device</h2>
-        </header>
+    <main>
+      <section class="hero" aria-labelledby="project-title">
+        <h1 id="project-title" class="hero-title">ESP32 Smart Knob Controller</h1>
+        <p class="hero-sub">A precision-engineered smart home rotary controller featuring Matter protocol compliance and sub-millisecond response times. Complete with advanced encoder processing, gesture recognition, and intuitive tactile feedback for seamless smart home integration.</p>
+        <img src="../assets/images/FOCknob.png" alt="ESP32 Smart Knob Controller" class="hero-image">
+      </section>
+      <!-- project overview -->
+      <section style="margin-top:18px" aria-label="Project overview">
+        <div class="card" role="region" aria-label="Project overview">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3 class="card-title">Project Overview</h3>
+          </div>
+          <p class="muted">The ESP32 Smart Knob represents a breakthrough in tactile smart home control, combining precision hardware engineering with sophisticated firmware development. This project showcases the convergence of traditional user interface paradigms with modern IoT protocols, delivering an intuitive rotary controller that bridges the gap between physical interaction and digital home automation.</p>
+          <p class="muted" style="margin-top:12px">As Lead Firmware Engineer, I architected a complete Matter-compliant ecosystem featuring sub-millisecond encoder response, advanced gesture recognition, and seamless cross-platform integration. The solution supports real-time tactile feedback, adaptive control algorithms, and enterprise-grade security, making it suitable for both consumer and commercial smart building applications.</p>
+          <p class="muted" style="margin-top:12px">Beyond serving as a practical smart home controller, this project provides a comprehensive reference framework for developers building next-generation human-machine interfaces in IoT environments. The component architecture abstracts complex encoder processing, wireless protocols, and user experience design into reusable, well-documented modules.</p>
+          <a class="cta" href="https://github.com/esp-arduino-libs/ESP32_Knob" target="_blank" rel="noopener">View project on GitHub <i class="fas fa-external-link-alt" style="font-size:0.9rem"></i></a>
+        </div>
+      </section>
 
-        <section class="about-text">
-          <div style="text-align: center; margin: 20px 0;">
-            <img src="../assets/images/icon-hw.png" alt="ESP Knob" style="width: 100px; height: 100px;">
+      <!-- ESP32 Smart Knob Section -->
+      <section style="margin-top:18px" aria-label="ESP32 Smart Knob project">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-dial"></i></div>
+            <h3 class="card-title">ESP32 Smart Knob - Matter Integration</h3>
+          </div>
+          <p class="muted">A comprehensive smart home rotary controller solution combining custom hardware design with advanced firmware development. The ESP32 Smart Knob delivers intuitive, tactile control for smart home devices through a precision-engineered rotary interface with full Matter protocol compliance.</p>
+          <p class="muted" style="margin-top:12px">This project demonstrates professional-grade engineering practices in embedded systems, wireless protocols, and user interface design, serving as both a practical smart home controller and a comprehensive reference implementation for developers building Matter-compliant rotary control interfaces.</p>
+        </div>
+      </section>
+
+      <!-- My key contributions -->
+      <section style="margin-top:18px" aria-label="Key contributions">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-tasks"></i></div>
+            <h3 class="card-title">My Key Contributions</h3>
           </div>
 
-          <h3 class="h3">Project Overview</h3>
-          <p>
-            Designed and developed an innovative ESP32-based smart knob device featuring advanced BLDC motor control 
-            and haptic feedback. This IoT device is fully compatible with the Matter protocol, enabling seamless 
-            integration with modern smart home ecosystems including Apple HomeKit, Google Home, and Amazon Alexa.
-          </p>
+          <div class="contrib">
+            <div class="num">1</div>
+            <div>
+              <strong>Advanced Encoder Driver Development</strong>
+              <p class="muted">Engineered hardware interrupt-driven quadrature decoding with 4x resolution enhancement and noise rejection algorithms for sub-millisecond response times.</p>
+            </div>
+          </div>
 
-          <h3 class="h3">Key Features</h3>
-          <ul style="color: var(--light-gray); margin-left: 20px;">
-            <li>Precision BLDC motor control with encoder feedback</li>
-            <li>Advanced haptic feedback for tactile user interaction</li>
-            <li>Matter protocol compatibility for universal smart home integration</li>
-            <li>Low-power design with sleep mode optimization</li>
-            <li>Wireless connectivity via WiFi and Thread</li>
-            <li>Customizable rotation profiles and resistance settings</li>
-            <li>OTA update capability for firmware maintenance</li>
+          <div class="contrib">
+            <div class="num">2</div>
+            <div>
+              <strong>Matter Protocol Integration</strong>
+              <p class="muted">Implemented complete Matter 1.0 compliance including Level Control cluster, secure commissioning, and cross-platform interoperability with major smart home ecosystems.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">3</div>
+            <div>
+              <strong>Real-Time Control Systems</strong>
+              <p class="muted">Developed deterministic control algorithms with dual-core FreeRTOS architecture and hardware-accelerated PWM for responsive tactile feedback systems.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">4</div>
+            <div>
+              <strong>Production Firmware & DevOps</strong>
+              <p class="muted">Established secure OTA update mechanism, factory provisioning system, and comprehensive testing framework for enterprise deployment readiness.</p>
+            </div>
+          </div>
+
+          <div class="contrib">
+            <div class="num">5</div>
+            <div>
+              <strong>Hardware-Software Co-Design</strong>
+              <p class="muted">Contributed to PCB specifications, GPIO optimization, and signal integrity validation through comprehensive hardware-firmware integration testing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Implementation & highlights -->
+      <section style="margin-top:18px" aria-label="Implementation and highlights">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-cogs"></i></div>
+            <h3 class="card-title">Implementation & Highlights</h3>
+          </div>
+
+          <p class="muted"><strong>How it works (high level)</strong></p>
+          <ul class="feature-list" aria-hidden="false">
+            <li class="feature-item"><i class="fas fa-play"></i> Physical rotation detected by encoder → hardware interrupt processing → gesture recognition algorithm → Matter command generation → secure transmission to target devices → visual/haptic feedback display.</li>
+            <li class="feature-item"><i class="fas fa-shapes"></i> Dual-core FreeRTOS design: Core 0 handles encoder processing and control algorithms while Core 1 manages wireless communication and user interface to maintain deterministic response times.</li>
+            <li class="feature-item"><i class="fas fa-lock"></i> Thread/Wi-Fi mesh networking with device attestation certificates and encrypted command processing, ensuring secure smart home integration without compromising performance.</li>
+            <li class="feature-item"><i class="fas fa-stream"></i> Adaptive control algorithms with acceleration-based gesture recognition, enabling intuitive interaction patterns from precise adjustments to rapid scrolling based on user intent.</li>
+            <li class="feature-item"><i class="fas fa-server"></i> Graceful degradation: offline operation mode, automatic network recovery, and local device memory for maintaining functionality during connectivity issues.</li>
           </ul>
 
-          <h3 class="h3">Technical Implementation</h3>
-          <p>
-            Built on ESP32-C6 microcontroller with custom PCB design optimizing for electromagnetic compatibility 
-            and power efficiency. The firmware implements sophisticated motor control algorithms, real-time haptic 
-            feedback processing, and secure Matter communication protocols. The device features magnetic encoder 
-            for precise position sensing and supports both continuous and stepped rotation modes.
-          </p>
+          <p class="muted" style="margin-top:10px"><strong>Notable engineering decisions</strong></p>
+          <ul class="feature-list">
+            <li class="feature-item"><i class="fas fa-lightbulb"></i> Hardware interrupt-driven encoder processing over polling to achieve sub-millisecond response times with minimal CPU overhead.</li>
+            <li class="feature-item"><i class="fas fa-tachometer-alt"></i> Dedicated hardware timer for PWM generation ensuring deterministic LED feedback timing independent of network or processing loads.</li>
+            <li class="feature-item"><i class="fas fa-book"></i> Component API designed for minimal integration complexity — init, configure, onRotation, onPress — enabling rapid deployment in diverse applications.</li>
+          </ul>
 
-          <h3 class="h3">Hardware Design</h3>
-          <p>
-            The device features a custom 4-layer PCB with dedicated power domains for analog and digital circuits. 
-            The BLDC motor driver uses advanced FOC (Field Oriented Control) algorithms for smooth operation and 
-            precise torque control. Integrated hall sensors provide 360-degree position feedback with sub-degree accuracy.
-          </p>
+          <p class="muted" style="margin-top:12px">For complete technical documentation and implementation examples, see the resources linked below.</p>
 
-          <h3 class="h3">Technologies Used</h3>
-          <div class="service-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 20px 0;">
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-c.png" alt="C/C++" width="40">
-              </div>
-              <h4 class="h4 service-item-title">ESP-IDF</h4>
-            </div>
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-hw.png" alt="Hardware" width="40">
-              </div>
-              <h4 class="h4 service-item-title">PCB Design</h4>
-            </div>
-            <div class="service-item" style="text-align: center;">
-              <div class="service-icon-box">
-                <img src="../assets/images/icon-python.png" alt="Python" width="40">
-              </div>
-              <h4 class="h4 service-item-title">Testing Tools</h4>
-            </div>
-          </div>
-
-          <h3 class="h3">Applications</h3>
-          <p>
-            This smart knob device serves multiple applications in modern smart homes: dimmer control for lighting systems, 
-            volume control for audio systems, temperature adjustment for HVAC, and general-purpose input for home automation. 
-            The Matter compatibility ensures it works seamlessly across different smart home platforms without vendor lock-in.
-          </p>
-
-          <h3 class="h3">Impact</h3>
-          <p>
-            The ESP Knob project demonstrates the potential of ESP32 platforms in creating sophisticated IoT devices 
-            with professional-grade user experience. The project has been showcased at industry conferences and serves 
-            as a reference design for Matter-compatible devices in the Espressif ecosystem.
-          </p>
-
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="../index.html" class="form-btn" style="display: inline-block; text-decoration: none;">
-              <ion-icon name="arrow-back-outline"></ion-icon>
-              <span>Back to Portfolio</span>
+          <div style="margin-top:12px">
+            <a class="cta" href="https://github.com/esp-arduino-libs/ESP32_Knob" target="_blank" rel="noopener">
+              Explore the implementation <i class="fas fa-external-link-alt" style="font-size:0.9rem"></i>
             </a>
           </div>
-        </section>
-      </article>
-    </div>
-  </main>
+        </div>
+      </section>
+      <!-- Smart Home Applications -->
+      <section style="margin-top:18px" aria-label="Smart home applications">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-home"></i></div>
+            <h3 class="card-title">Smart Home Applications</h3>
+          </div>
 
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+          <p class="muted">The ESP32 Smart Knob provides intuitive rotary control for a wide range of smart home devices and scenarios, offering precise tactile feedback and seamless Matter integration across all major ecosystems.</p>
+
+          <div class="grid" style="margin-top:16px">
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-lightbulb"></i></div>
+                <h4 style="font-size:1rem">Lighting Control</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Precise brightness, color temperature, and hue adjustments with smooth rotary interaction and visual feedback.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-thermometer-half"></i></div>
+                <h4 style="font-size:1rem">Climate Control</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Intuitive thermostat adjustment with precise temperature increments and mode switching capabilities.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-volume-up"></i></div>
+                <h4 style="font-size:1rem">Audio Systems</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Volume control, track navigation, and equalizer adjustments with acceleration-based scrolling.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-blinds"></i></div>
+                <h4 style="font-size:1rem">Window Coverings</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Precise positioning control for smart blinds and curtains with positional feedback.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-cogs"></i></div>
+                <h4 style="font-size:1rem">Scene Management</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Cycle through and activate different smart home scenes with contextual visual indicators.</p>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div class="card-header">
+                <div class="card-icon" style="width:36px;height:36px"><i class="fas fa-film"></i></div>
+                <h4 style="font-size:1rem">Media Control</h4>
+              </div>
+              <p class="muted" style="font-size:0.9rem">Timeline scrubbing, playback speed control, and media navigation with gesture recognition.</p>
+            </div>
+          </div>
+
+          <p class="muted" style="margin-top:16px">The device's advanced gesture recognition and configurable interaction patterns make it adaptable to virtually any control scenario requiring precise, intuitive input.</p>
+        </div>
+      </section>
+
+      <!-- technologies -->
+      <section style="margin-top:18px" aria-label="Technologies">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-code"></i></div>
+            <h3 class="card-title">Technologies & Languages</h3>
+          </div>
+          
+          <p class="muted" style="margin-bottom:12px"><strong>Programming Languages</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">C</span>
+            <span class="tech">C++</span>
+            <span class="tech">Python</span>
+          </div>
+          
+          <p class="muted" style="margin-top:16px;margin-bottom:12px"><strong>Frameworks & Platforms</strong></p>
+          <div class="tech-list" aria-hidden="false">
+            <span class="tech">ESP32-WROOM-32</span>
+            <span class="tech">ESP-IDF / FreeRTOS</span>
+            <span class="tech">Matter Protocol</span>
+            <span class="tech">Thread/Wi-Fi mesh</span>
+            <span class="tech">Rotary encoder processing</span>
+            <span class="tech">RGB LED control</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- resources -->
+      <section style="margin-top:18px" aria-label="Project resources">
+        <div class="card" role="region">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-link"></i></div>
+            <h3 class="card-title">Resources & Deep Dives</h3>
+          </div>
+
+          <div class="links">
+            <a class="resource-link" href="https://github.com/esp-arduino-libs/ESP32_Knob" target="_blank" rel="noopener">
+              <strong>GitHub — ESP32 Smart Knob Library</strong>
+              <div class="muted">Complete rotary encoder driver library with Matter integration and advanced control algorithms.</div>
+            </a>
+
+            <a class="resource-link" href="https://github.com/espressif/esp-box/tree/master/examples/matter_switch" target="_blank" rel="noopener">
+              <strong>GitHub — Matter Switch Implementation</strong>
+              <div class="muted">Reference implementation showcasing Matter protocol integration patterns and best practices.</div>
+            </a>
+
+            <a class="resource-link" href="https://docs.espressif.com/projects/esp-matter/en/latest/" target="_blank" rel="noopener">
+              <strong>ESP Matter Framework Guide</strong>
+              <div class="muted">Comprehensive documentation for Matter protocol implementation on ESP32 platforms.</div>
+            </a>
+
+            <a class="resource-link" href="https://csa-iot.org/all-solutions/matter/" target="_blank" rel="noopener">
+              <strong>Matter Protocol Specification</strong>
+              <div class="muted">Official Matter protocol documentation and certification requirements.</div>
+            </a>
+          </div>
+
+          <div style="margin-top:12px">
+            <a class="cta" href="https://github.com/esp-arduino-libs/ESP32_Knob" target="_blank" rel="noopener">
+              Open the repo <i class="fas fa-external-link-alt" style="font-size:0.9rem"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div>© 2024 Ali Hassan Shah — ESP32 Smart Knob Controller</div>
+      <div style="margin-top:8px"><span class="badge">Matter Protocol · Smart Home · Rotary Control</span></div>
+    </footer>
+  </div>
 </body>
 </html>

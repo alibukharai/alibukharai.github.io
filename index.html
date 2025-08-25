@@ -204,8 +204,8 @@
             <button class="navbar-link" data-nav-link>Projects</button>
           </li>
 
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Articles</button>
+          <li class="navbar-item" style="display: none;">
+            <button class="navbar-link" data-nav-link>Blog</button>
           </li>
 
           <li class="navbar-item">
@@ -488,13 +488,26 @@
               <h4 class="h4 timeline-item-title">Embedded Software Engineer - <a href="https://www.espressif.com.cn" target="_blank" style="color: var(--orange-yellow-crayola); text-decoration: none;">Espressif Systems</a></h4>
 
               <div class="timeline-date">Sep 2022 — Dec 2023</div>
-
+              
               <p class="timeline-text">
-                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP Knob for IoT Control (Aug 2023 – Dec 2023)</strong><br>
-                • Built ESP32-based knob using BLDC motor with haptic feedback for Matter-compatible IoT devices<br>
-                • Integrated FOC library for precise motor control, supporting both sensor-based and sensorless operation<br>
-                • Developed drivers for MT6701 I2C sensor and BLDC motor with Arduino-compatible wrappers<br>
-                • Designed LVGL-based GUI for real-time monitoring and control<br><br>
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">Key Responsibilities</strong><br>
+                • Designed and maintained production-ready embedded software for ESP32-based IoT devices using C/C++<br>
+                • Integrated device drivers (I2C/SPI/UART) and implemented Matter protocol support for smart home applications<br>
+                • Developed customer-facing solutions and work with them to provide them end to end support<br><br>
+
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">Key Technical Projects</strong><br>
+              <p class="timeline-text">
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP32 Smart Knob Controller (Aug 2023 – Dec 2023)</strong><br>
+                • Architected Matter-compliant smart home rotary controller with sub-millisecond response times<br>
+                • Developed advanced encoder driver with hardware interrupt-driven quadrature decoding<br>
+                • Implemented complete Matter protocol stack with Thread/Wi-Fi networking and device commissioning<br>
+                • Designed LVGL-based GUI for real-time monitoring and control interface<br><br>
+
+                <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP-FOC Driver Development (Aug 2023 – Dec 2023)</strong><br>
+                • Engineered Field-Oriented Control driver for ESP32 achieving 95%+ motor efficiency<br>
+                • Implemented Clarke/Park transformations and Space Vector Modulation algorithms<br>
+                • Developed hardware abstraction layer supporting 8+ motor driver chipsets (DRV8302, DRV8313)<br>
+                • Created real-time control framework with 20kHz deterministic control loops<br><br>
 
                 <strong style="font-size: 16px; color: var(--orange-yellow-crayola);">ESP-BOX AI Assistant (May 2023 – July 2023)</strong><br>
                 • Integrated ESP-BOX with OpenAI APIs, developing C library and LVGL-based GUI chatbot for edge AI<br>
@@ -510,9 +523,8 @@
                 • Delivered customer-facing Edge AI solutions on ESP32-S3, strengthening real-world application adoption<br>
                 • Deployed CNN-based hand gesture recognition achieving ~0.7s on-device inference without cloud dependency<br>
                 • Built human activity recognition model using accelerometer data + ESP-DL<br>
-                • Developed Python Tkinter GUI for training & deploying custom AI models, simplifying customer onboarding
+                • Developed Python Tkinter GUI for training & deploying custom AI models, simplifying customer onboarding<br><br>
               </p>
-
             </li>
 
             <li class="timeline-item">
@@ -623,6 +635,9 @@
 
           <ul class="project-list">
 
+            </li>
+
+            <!-- TEMPORARILY HIDDEN - RAS Tool project (will be updated later)
             <li class="project-item  active" data-filter-item data-category="AMD Projects">
               <a href="./projects/ras-tool.html">
 
@@ -641,7 +656,9 @@
 
               </a>
             </li>
+            -->
 
+            <!-- TEMPORARILY HIDDEN - SR-IOV & GIM project (will be updated later)
             <li class="project-item  active" data-filter-item data-category="AMD Projects">
               <a href="./projects/sriov-virtualization.html">
 
@@ -657,19 +674,34 @@
 
               </a>
             </li>
-
-            <li class="project-item  active" data-filter-item data-category="Espressif Projects">
+            -->            <li class="project-item  active" data-filter-item data-category="Espressif Projects">
               <a href="./projects/esp-knob.html">
 
                 <figure class="project-img">
 
-                  <img src="./assets/images/icon-hw.png" alt="ESP Knob" loading="lazy">
+                  <img src="./assets/images/FOCknob.png" alt="ESP32 Smart Knob Controller" loading="lazy">
                 </figure>
 
-                <h3 class="project-title">ESP Knob IoT Device</h3>
+                <h3 class="project-title">ESP32 Smart Knob Controller</h3>
 
                 <p class="project-category">Espressif Projects</p>
-                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">ESP32-based knob with BLDC motor control and haptic feedback for Matter-compatible devices</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Matter-compliant smart home rotary controller with precision encoder processing and advanced firmware development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="Espressif Projects">
+              <a href="./projects/esp-foc-driver.html">
+
+                <figure class="project-img">
+
+                  <img src="./assets/images/foc_knob.gif" alt="ESP-FOC Driver Development" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">ESP-FOC Driver Development</h3>
+
+                <p class="project-category">Espressif Projects</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Advanced Field-Oriented Control driver for ESP32 with 95%+ efficiency and real-time performance optimization</p>
 
               </a>
             </li>
@@ -679,13 +711,13 @@
 
                 <figure class="project-img">
 
-                  <img src="./assets/images/icon-python.png" alt="ESP-BOX AI" loading="lazy">
+                  <img src="./assets/images/esp-box.png" alt="ESP-BOX AI Assistant" loading="lazy">
                 </figure>
 
                 <h3 class="project-title">ESP-BOX AI Assistant</h3>
 
                 <p class="project-category">Espressif Projects</p>
-                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">OpenAI API integration with optimized C library and LVGL GUI for edge AI chatbot deployment</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Edge AI chatbot with OpenAI integration, featuring optimized C library implementation and LVGL-based GUI for constrained devices</p>
 
               </a>
             </li>
@@ -694,17 +726,14 @@
               <a href="./projects/matter-button.html">
 
                 <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
 
-                  <img src="./assets/images/icon-research.png" alt="Matter Button Driver" loading="lazy">
+                  <img src="./assets/images/matter.jpg" alt="Matter Protocol Button Driver" loading="lazy">
                 </figure>
 
                 <h3 class="project-title">Matter Button Driver</h3>
 
                 <p class="project-category">Espressif Projects</p>
-                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Matter-compliant button driver enabling multi-function operation with Arduino compatibility and certification support</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Production-ready Matter-compliant button driver with multi-function operation, Arduino compatibility, and full UL certification support</p>
 
               </a>
             </li>
@@ -713,21 +742,19 @@
               <a href="./projects/esp-edge-ai.html">
 
                 <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
 
-                  <img src="./assets/images/icon-python.png" alt="Edge AI Framework" loading="lazy">
+                  <img src="./assets/images/hand.webp" alt="ESP Edge AI Hand Gesture Recognition" loading="lazy">
                 </figure>
 
                 <h3 class="project-title">ESP Edge AI Framework</h3>
 
                 <p class="project-category">Espressif Projects</p>
-                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">Comprehensive Edge AI framework with CNN gesture recognition, Python training tools, and customer onboarding solutions</p>
+                <p class="project-description" style="font-size: 12px; color: var(--light-gray-70); margin-top: 5px;">CNN-based hand gesture recognition achieving ~0.7s on-device inference with Python training tools and comprehensive customer deployment framework</p>
 
               </a>
             </li>
 
+            <!-- TEMPORARILY HIDDEN - Python Automation project (will be updated later)
             <li class="project-item  active" data-filter-item data-category="AMD Projects">
               <a href="./projects/python-automation.html">
 
@@ -746,6 +773,7 @@
 
               </a>
             </li>
+            -->
 
             <li class="project-item  active" data-filter-item data-category="Other Projects">
               <a href="./projects/car-lamp-system.html">
@@ -775,18 +803,18 @@
 
 
       <!--
-        - #ARTICLES
+        - #BLOG
       -->
 
-      <article class="articles" data-page="articles">
+      <article class="articles" data-page="blog" style="display: none;">
 
         <header>
-          <h2 class="h2 article-title">Articles</h2>
+          <h2 class="h2 article-title">Blog</h2>
         </header>
 
         <section class="articles-content">
           <p style="color: var(--light-gray); font-size: var(--fs-6); margin-bottom: 30px;">
-            Technical articles and insights on Linux kernel development, embedded systems, and GPU technologies.
+            Technical blog posts and insights on Linux kernel development, embedded systems, and GPU technologies.
           </p>
 
           <ul class="filter-list">
@@ -845,7 +873,7 @@
             <li class="article-item active" data-filter-item data-category="edge ai">
               <div class="article-content">
                 <h3 class="h3 article-title">
-                  <a href="./articles/embedded-ai-edge-computing.html" style="color: var(--white-2); text-decoration: none;">
+                  <a href="./blog/embedded-ai-edge-computing.html" style="color: var(--white-2); text-decoration: none;">
                     Embedded AI and Edge Computing
                   </a>
                 </h3>
@@ -856,7 +884,7 @@
                   Exploring AI deployment on embedded systems, model optimization techniques, 
                   and building intelligent edge computing solutions with ESP32 and TinyML.
                 </p>
-                <a href="./articles/embedded-ai-edge-computing.html" class="article-link" 
+                <a href="./blog/embedded-ai-edge-computing.html" class="article-link" 
                    style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
                   <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
                   Read Article →
@@ -870,7 +898,7 @@
             <li class="article-item active" data-filter-item data-category="linux kernel">
               <div class="article-content">
                 <h3 class="h3 article-title">
-                  <a href="./articles/linux-kernel-debugging.html" style="color: var(--white-2); text-decoration: none;">
+                  <a href="./blog/linux-kernel-debugging.html" style="color: var(--white-2); text-decoration: none;">
                     Advanced Linux Kernel Debugging Techniques
                   </a>
                 </h3>
@@ -881,7 +909,7 @@
                   Comprehensive guide to advanced debugging techniques for Linux kernel development, 
                   including KGDB, ftrace, and memory debugging with practical examples.
                 </p>
-                <a href="./articles/linux-kernel-debugging.html" class="article-link" 
+                <a href="./blog/linux-kernel-debugging.html" class="article-link" 
                    style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
                   <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
                   Read Article →
