@@ -67,12 +67,6 @@
     .links{display:flex;flex-direction:column;gap:10px}
     .resource-link{display:block;padding:12px;border-radius:10px;text-decoration:none;background:rgba(255,255,255,0.01);color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
     .resource-link:hover{color:var(--white)}
-    .visual-demo{text-align:center;margin:20px 0}
-    .motor-visual{width:280px;height:180px;background:linear-gradient(135deg,#7f8c8d,#bdc3c7);margin:0 auto;border-radius:15px;position:relative;box-shadow:0 10px 25px rgba(0,0,0,0.4);display:flex;justify-content:center;align-items:center;color:white;font-weight:bold;font-size:1.1rem;overflow:hidden}
-    .motor-visual:before{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:#2c3e50;border:10px solid #e67e22;}
-    .motor-visual:after{content:'ESP-FOC';position:absolute;color:white;font-size:1rem;text-shadow:0 2px 5px rgba(0,0,0,0.3);z-index:1}
-    @keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-    .rotating{animation:rotate 5s linear infinite}
   </style>
 </head>
 <body>
@@ -86,12 +80,7 @@
       <section class="hero" aria-labelledby="project-title">
         <h1 id="project-title" class="hero-title">ESP-FOC Driver Development</h1>
         <p class="hero-sub">Advanced Field-Oriented Control driver for ESP32 platforms, featuring 95%+ motor efficiency and 20kHz deterministic control loops. Complete with hardware abstraction layer, multi-driver support, and comprehensive safety systems for industrial-grade motor control applications.</p>
-        <div class="visual-demo">
-          <div class="motor-visual">
-            <div class="rotating" style="position:absolute;width:100px;height:100px;border-radius:50%;background:#2c3e50;border:10px solid #e67e22;"></div>
-            <div style="position:absolute;color:white;font-size:1rem;text-shadow:0 2px 5px rgba(0,0,0,0.3);z-index:1">ESP-FOC Driver</div>
-          </div>
-        </div>
+        <img src="../assets/images/foc_knob.gif" alt="ESP-FOC Driver in action" class="hero-image" loading="lazy">
       </section>
 
       <!-- project overview -->
