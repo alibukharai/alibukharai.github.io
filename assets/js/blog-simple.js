@@ -72,19 +72,54 @@ class SimpleBlogManager {
     try {
       console.log(`SimpleBlogManager: Opening post - ${post.title}`);
       
-      const response = await fetch(post.file);
-      if (!response.ok) {
-        throw new Error(`Failed to load ${post.file}`);
-      }
+      let content;
+      let response;
       
-      let content = await response.text();
-      console.log(`SimpleBlogManager: Loaded ${content.length} characters`);
+      // Smart loading strategy: JSON first (GitHub Pages compatible), then markdown fallback
+      const strategies = [
+        // Strategy 1: Try JSON format (automatically generated, GitHub Pages compatible)
+        () => fetch(post.file.replace('.md', '.json')),
+        
+        // Strategy 2: Direct markdown fetch (may work in some cases)
+        () => fetch(post.file),
+        
+        // Strategy 3: GitHub Raw API (reliable fallback when committed)
+        () => fetch(`https://raw.githubusercontent.com/alibukharai/alibukharai.github.io/main/${post.file}`)
+      ];
       
-      // Remove YAML frontmatter
-      if (content.startsWith('---')) {
-        const secondDelimiter = content.indexOf('---', 3);
-        if (secondDelimiter !== -1) {
-          content = content.substring(secondDelimiter + 3).trim();
+      let lastError;
+      for (let i = 0; i < strategies.length; i++) {
+        try {
+          console.log(`SimpleBlogManager: Trying strategy ${i + 1}...`);
+          response = await strategies[i]();
+          
+          if (response.ok) {
+            if (i === 0) { // JSON strategy (first priority)
+              const blogData = await response.json();
+              content = blogData.content;
+              console.log(`SimpleBlogManager: ✅ Loaded JSON with ${content.length} characters`);
+            } else { // Markdown strategies (fallback)
+              content = await response.text();
+              console.log(`SimpleBlogManager: ✅ Loaded markdown with ${content.length} characters`);
+              
+              // Remove YAML frontmatter
+              if (content.startsWith('---')) {
+                const secondDelimiter = content.indexOf('---', 3);
+                if (secondDelimiter !== -1) {
+                  content = content.substring(secondDelimiter + 3).trim();
+                }
+              }
+            }
+            break; // Success! Exit the loop
+          } else {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+        } catch (error) {
+          lastError = error;
+          console.log(`SimpleBlogManager: Strategy ${i + 1} failed: ${error.message}`);
+          if (i === strategies.length - 1) {
+            throw new Error(`All loading strategies failed. Last error: ${error.message}`);
+          }
         }
       }
       
