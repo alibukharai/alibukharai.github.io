@@ -1,0 +1,63 @@
+/* Emergency code block fix - override everything */
+
+/* Reset all code formatting to basics */
+.modal-content pre,
+.modal-content pre *,
+.modal-content code,
+.modal-content code *,
+.hljs,
+.hljs * {
+  all: unset !important;
+}
+
+/* Apply only essential formatting */
+.modal-content pre {
+  display: block !important;
+  font-family: 'Courier New', monospace !important;
+  background: #1e1e1e !important;
+  color: #f8f8f2 !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+  border-radius: 8px !important;
+  border: 1px solid #333 !important;
+  overflow-x: auto !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  white-space: pre !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-wrap: nowrap !important;
+  position: relative !important;
+}
+
+.modal-content pre code {
+  display: inline !important;
+  font-family: inherit !important;
+  background: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  white-space: pre !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-wrap: nowrap !important;
+}
+
+/* Ensure no child elements can break formatting */
+.modal-content pre *,
+.modal-content pre code * {
+  white-space: pre !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-wrap: nowrap !important;
+  display: inline !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}

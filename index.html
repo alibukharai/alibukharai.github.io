@@ -204,7 +204,7 @@
             <button class="navbar-link" data-nav-link>Projects</button>
           </li>
 
-          <li class="navbar-item" style="display: none;">
+          <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Blog</button>
           </li>
 
@@ -822,7 +822,7 @@
         - #BLOG
       -->
 
-      <article class="articles" data-page="blog" style="display: none;">
+      <article class="articles" data-page="blog">
 
         <header>
           <h2 class="h2 article-title">Blog</h2>
@@ -840,14 +840,12 @@
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Edge AI</button>
+              <button data-filter-btn>GPU Architecture</button>
             </li>
 
             <li class="filter-item">
               <button data-filter-btn>Linux Kernel</button>
             </li>
-
-
 
           </ul>
 
@@ -870,76 +868,31 @@
               </li>
 
               <li class="select-item">
-                <button data-select-item>Edge AI</button>
+                <button data-select-item>GPU Architecture</button>
               </li>
 
               <li class="select-item">
                 <button data-select-item>Linux Kernel</button>
               </li>
 
-
-
             </ul>
 
           </div>
 
           <ul class="articles-list">
-            
-            <!-- Edge AI Article -->
-            <li class="article-item active" data-filter-item data-category="edge ai">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="./blog/embedded-ai-edge-computing.html" style="color: var(--white-2); text-decoration: none;">
-                    Embedded AI and Edge Computing
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  April 2024 • 18 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Exploring AI deployment on embedded systems, model optimization techniques, 
-                  and building intelligent edge computing solutions with ESP32 and TinyML.
-                </p>
-                <a href="./blog/embedded-ai-edge-computing.html" class="article-link" 
-                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
-                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
-                  Read Article →
-                </a>
-              </div>
+            <!-- Blog posts will be dynamically loaded here -->
+            <li class="article-item loading" style="text-align: center; padding: 40px;">
+              <p style="color: var(--light-gray-70);">Loading blog posts...</p>
             </li>
-
-
-
-            <!-- Linux Kernel Article -->
-            <li class="article-item active" data-filter-item data-category="linux kernel">
-              <div class="article-content">
-                <h3 class="h3 article-title">
-                  <a href="./blog/linux-kernel-debugging.html" style="color: var(--white-2); text-decoration: none;">
-                    Advanced Linux Kernel Debugging Techniques
-                  </a>
-                </h3>
-                <p class="article-meta" style="color: var(--light-gray-70); font-size: var(--fs-7); margin-bottom: 10px;">
-                  March 2024 • 15 min read
-                </p>
-                <p style="color: var(--light-gray); line-height: 1.6; margin-bottom: 15px;">
-                  Comprehensive guide to advanced debugging techniques for Linux kernel development, 
-                  including KGDB, ftrace, and memory debugging with practical examples.
-                </p>
-                <a href="./blog/linux-kernel-debugging.html" class="article-link" 
-                   style="color: var(--orange-yellow-crayola); text-decoration: none; font-size: var(--fs-7);">
-                  <ion-icon name="link-outline" style="margin-right: 5px;"></ion-icon>
-                  Read Article →
-                </a>
-              </div>
-            </li>
-
           </ul>
           
           <div style="text-align: center; margin-top: 40px;">
-            <a href="https://medium.com/@engg.alibukharai" target="_blank" class="form-btn" 
-               style="display: inline-block; text-decoration: none;">
-              <ion-icon name="logo-medium"></ion-icon>
-              <span>Follow on Medium</span>
+            <a href="https://medium.com/@engg.alibukharai" target="_blank" rel="noopener noreferrer" 
+               class="form-btn medium-follow-btn" 
+               onclick="console.log('Medium link clicked'); return true;"
+               style="display: inline-block; text-decoration: none; position: relative; z-index: 1000; pointer-events: auto;">
+              <ion-icon name="logo-medium" style="pointer-events: none;"></ion-icon>
+              <span style="pointer-events: none;">Follow on Medium</span>
             </a>
           </div>
 
@@ -1006,6 +959,23 @@
   <!--
     - custom js link
   -->
+  <!-- Simple and reliable markdown and syntax highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@9.1.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  
+  <!-- Web font for better code rendering -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Emergency code fix -->
+  <link rel="stylesheet" href="./assets/css/code-fix.css">
+  
+  <script src="./assets/js/blog-simple.js"></script>
   <script src="./assets/js/script.js?v=1.1"></script>
 
   <!--

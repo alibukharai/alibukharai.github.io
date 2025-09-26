@@ -140,8 +140,16 @@ for (let i = 0; i < articlesFilterBtn.length; i++) {
   });
 }
 
-// Initialize default filter states and page navigation
+// Combined DOM initialization
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Script: DOM loaded, initializing everything...');
+  
+  // Initialize highlight.js if available
+  if (typeof hljs !== 'undefined') {
+    hljs.highlightAll();
+    console.log('Script: Highlight.js initialized');
+  }
+  
   // Set initial active buttons for projects
   const projectsFirstBtn = document.querySelector('.projects [data-filter-btn]');
   if (projectsFirstBtn) {
@@ -154,15 +162,62 @@ document.addEventListener('DOMContentLoaded', function() {
     lastClickedBtnArticles = articlesFirstBtn;
   }
   
-  // Initialize articles - show all by default
-  const allArticles = document.querySelectorAll('.articles [data-filter-item]');
-  allArticles.forEach(function(article) {
-    article.classList.add('active');
-  });
+  // Setup navigation
+  setupNavigation();
   
-  // Initialize page state
+  // Initialize page state after navigation is set up
+  const currentPage = sessionStorage.getItem('currentPage') || 'home';
   setActivePage(currentPage);
+  
+  // Wait for blog system to initialize before setting up articles
+  setTimeout(() => {
+    // Initialize articles - show all by default
+    const allArticles = document.querySelectorAll('.articles [data-filter-item]');
+    allArticles.forEach(function(article) {
+      article.classList.add('active');
+    });
+  }, 1000);
+  
+  console.log('Script: Complete initialization finished');
 });
+
+function setupNavigation() {
+  console.log('Script: Setting up navigation...');
+  
+  // page navigation variables
+  const navigationLinks = document.querySelectorAll("[data-nav-link]");
+  const pages = document.querySelectorAll("[data-page]");
+
+  console.log(`Script: Found ${navigationLinks.length} nav links and ${pages.length} pages`);
+
+  // Make setActivePage global so it can be used elsewhere
+  window.setActivePage = function(pageName) {
+    console.log(`Script: Setting active page to: ${pageName}`);
+    
+    for (let i = 0; i < pages.length; i++) {
+      if (pageName === pages[i].dataset.page) {
+        pages[i].classList.add("active");
+        navigationLinks[i].classList.add("active");
+        sessionStorage.setItem('currentPage', pageName);
+        console.log(`Script: Activated page: ${pageName}`);
+      } else {
+        pages[i].classList.remove("active");
+        navigationLinks[i].classList.remove("active");
+      }
+    }
+  };
+
+  // add event to all nav link
+  for (let i = 0; i < navigationLinks.length; i++) {
+    navigationLinks[i].addEventListener("click", function () {
+      const pageName = this.innerHTML.toLowerCase();
+      setActivePage(pageName);
+      window.scrollTo(0, 0);
+    });
+  }
+
+  console.log('Script: Navigation setup complete');
+}
 
 // contact form variables
 const form = document.querySelector("[data-form]");
@@ -207,36 +262,6 @@ if (form) {
   });
 }
 
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// Store current page in sessionStorage
-let currentPage = sessionStorage.getItem('currentPage') || 'home';
-
-// Function to set active page
-function setActivePage(pageName) {
-  for (let i = 0; i < pages.length; i++) {
-    if (pageName === pages[i].dataset.page) {
-      pages[i].classList.add("active");
-      navigationLinks[i].classList.add("active");
-      currentPage = pageName;
-      sessionStorage.setItem('currentPage', pageName);
-    } else {
-      pages[i].classList.remove("active");
-      navigationLinks[i].classList.remove("active");
-    }
-  }
-}
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-    const pageName = this.innerHTML.toLowerCase();
-    setActivePage(pageName);
-    window.scrollTo(0, 0);
-  });
-}
 
 // Handle browser back/forward buttons
 window.addEventListener('popstate', function() {
